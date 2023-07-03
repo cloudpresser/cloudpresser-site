@@ -8,7 +8,9 @@
     ],
     "scripts": {
         "static": "yarn workspace @cloudpresser/static watch:css",
-        "next": "yarn workspace @cloudpresser/next dev"
+        "next": "yarn workspace @cloudpresser/next dev",
+        "build": "yarn workspace @cloudpresser/next build",
+        "export": "yarn workspace @cloudpresser/next export"
     },
     "private": true
 }
