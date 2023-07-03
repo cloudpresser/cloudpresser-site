@@ -6,6 +6,7 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { services } from "@/data/services";
 import remarkGfm from "remark-gfm";
 import Head from "next/head";
+import { get } from "http";
 
 export default function Service() {
     const router = useRouter();
@@ -28,6 +29,28 @@ export default function Service() {
             />
         </>
     )
+}
+
+export const getStaticProps = ({ params }: any) => {
+  const service = services.find((service) => service.id === params.id, ) ?? services[0]
+  return {
+    props: {
+      service,
+    },
+  }
+}
+
+export const getStaticPaths = () => {
+  return(
+    {
+      paths: services.map((service) => ({
+        params: {
+          id: service.id,
+        },
+      })),
+      fallback: false,
+    }
+  )
 }
 
 export interface PostInterface  {
