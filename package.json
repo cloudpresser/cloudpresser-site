@@ -1,0 +1,14 @@
+{
+    "name": "cloudpresser-project",
+    "version": "0.0.0",
+    "workspaces": [
+        "apps/*",
+        "libs/*",
+        "features/*"
+    ],
+    "scripts": {
+        "static": "yarn workspace @cloudpresser/static watch:css",
+        "next": "yarn workspace @cloudpresser/next dev"
+    },
+    "private": true
+}

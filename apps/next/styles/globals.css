@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .primary-button {
+    @apply inline-block text-sm text-white font-semibold px-4 py-2 sm:px-8 sm:py-3 rounded-full bg-gradient-to-r from-success to-[#1CE501] hover:brightness-110 transition;
+  }
+
+  .secondary-button {
+    @apply inline-block text-sm text-primary-400 font-semibold px-4 py-2 sm:px-8 sm:py-3 rounded-full bg-white border border-primary-400 transition hover:text-white hover:bg-primary-400;
+  }
+
+  .primary-input {
+    @apply block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-primary-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6 transition;
+  }
+
+  .round-gradient {
+    background: linear-gradient(
+      122.46deg,
+      #00dafc 24.15%,
+      #00dafc 36.88%,
+      #009bda 61.95%,
+      #0685cc 76.03%,
+      #0750bd 96.18%,
+      #0449b0 100.34%,
+      #0449b0 110.01%
+    );
+  }
+  .markdown > * {
+    all: revert;
+  }
+  .round-solid {
+    background: linear-gradient(#009BDA, #009BDA)
+  }
+
+  .footer-shadow {
+    box-shadow: 0px 0px 4px rgba(0, 155, 218, 0.1),
+      0px 8px 30px rgba(0, 155, 218, 0.2);
+  }
+}

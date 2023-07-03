@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cloud Presser | Calender</title>
+
+    <link rel="stylesheet" href="./dist/main.css" />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+  </head>
+  <body class="bg-white">
+    <!-- Hero section -->
+    <header class="relative flex flex-col min-h-screen h-full">
+      <!-- background -->
+      <div class="absolute flex justify-end inset-0 w-full h-full z-0">
+        <img
+          src="./dist/img/calender-hero-bg.png"
+          class="w-2/3 h-full object-cover object-left"
+          alt=""
+        />
+      </div>
+
+      <nav class="bg-transparent" x-data="{mobileNav: false}">
+        <div class="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
+          <div class="relative flex h-20 items-center justify-between">
+            <div class="absolute inset-y-0 left-0 flex items-center">
+              <a href="/" class="flex flex-shrink-0 items-center">
+                <img
+                  class="block h-8 w-auto lg:hidden"
+                  src="./dist/img/logo.png"
+                  alt="Your Company"
+                />
+                <img
+                  class="hidden h-14 w-auto lg:block"
+                  src="./dist/img/logo.png"
+                  alt="Your Company"
+                />
+              </a>
+            </div>
+            <div
+              class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
+            ></div>
+            <div
+              class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+            >
+              <!-- Mobile menu button-->
+              <button
+                type="button"
+                class="inline-flex items-center justify-center rounded-md p-2 text-black md:text-white lg:hidden"
+                aria-controls="mobile-menu"
+                @click="mobileNav = !mobileNav"
+                aria-expanded="false"
+              >
+                <span class="sr-only">Open main menu</span>
+                <!--
+                   Icon when menu is closed.
+     
+                   Menu open: "hidden", Menu closed: "block"
+                 -->
+                <svg
+                  class="h-6 w-6"
+                  x-clock
+                  x-show="!mobileNav"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
+                </svg>
+                <!--
+                   Icon when menu is open.
+     
+                   Menu open: "block", Menu closed: "hidden"
+                 -->
+                <svg
+                  class="h-6 w-6"
+                  x-clock
+                  x-show="mobileNav"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+              <div class="hidden sm:ml-6 lg:block">
+                <div class="flex space-x-4">
+                  <a
+                    href="/"
+                    class="text-white hover:text-gray-100 transition px-3 py-2 text-sm font-medium"
+                    >Home</a
+                  >
+                  <a
+                    href="./calender.html"
+                    class="text-white hover:text-gray-100 transition px-3 py-2 text-sm font-medium underline"
+                    >Calender</a
+                  >
+                  <a
+                    href="./pricing.html"
+                    class="text-white hover:text-gray-100 transition px-3 py-2 text-sm font-medium"
+                    >Price</a
+                  >
+                  <a
+                    href="./blog.html"
+                    class="text-white hover:text-gray-100 transition px-3 py-2 text-sm font-medium"
+                    >Blog</a
+                  >
+                  <a
+                    href="/#contact"
+                    class="text-white hover:text-gray-100 transition px-3 py-2 text-sm font-medium"
+                    >Contact</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div
+          class="lg:hidden relative z-10"
+          id="mobile-menu"
+          x-show="mobileNav"
+          x-clock
+        >
+          <div class="space-y-1 px-2 pb-3 pt-2">
+            <!-- Current: "bg-primary-400 text-white", Default: "text-gray-600 hover:bg-gray-700 hover:text-white" -->
+            <a
+              href="/"
+              class="bg-primary-400 text-white block rounded-md px-3 py-2 text-base font-medium"
+              aria-current="page"
+              >Home</a
+            >
+            <a
+              href="#"
+              class="text-gray-600 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+              >Team</a
+            >
+            <a
+              href="#"
+              class="text-gray-600 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+              >Projects</a
+            >
+            <a
+              href="./calender.html"
+              class="text-gray-600 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+              >Calendar</a
+            >
+          </div>
+        </div>
+      </nav>
+
+      <div
+        class="flex-1 relative z-10 mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16 md:flex justify-between items-center w-full py-12"
+      >
+        <div class="md:max-w-lg">
+          <h1
+            class="text-primary-400 text-2xl sm:text-3xl xl:text-4xl font-semibold text-center md:text-left"
+          >
+            Let’s book your visit
+          </h1>
+          <p class="text-sm mt-6 text-gray-800 text-center md:text-left">
+            In in commodo dictum vel purus, pellentesque ipsum et. Sem convallis
+            in ullamcorper vitae viverra. Neque, dignissim in id at tempor, arcu
+            massa ornare in.
+          </p>
+        </div>
+
+        <div class="mt-6 md:mt-0">
+          <img
+            src="./dist/img/calender-hero.png"
+            class="md:h-[510px] max-h-[550px] object-contain"
+            alt=""
+          />
+        </div>
+      </div>
+    </header>
+
+    <!-- Calendar -->
+    <section class="bg-white py-12 lg:py-20 overflow-hidden max-w-full">
+      <div class="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
+        <div class="max-w-xl mx-auto text-center mb-24">
+          <h2
+            class="text-center mb-5 text-2xl sm:text-3xl lg:text-4xl font-semibold text-primary-300"
+          >
+            Select Date
+          </h2>
+          <p class="text-center text-gray-900 text-base">
+            Ultrices volutpat et adipiscing eget est risus. Sed massa elementum
+            nec, egestas amet tellus dictumst enim facilisis.
+          </p>
+        </div>
+
+        <div>
+          <div>
+            <!-- <h2 class="text-base font-semibold leading-6 text-gray-900">
+              Upcoming meetings
+            </h2> -->
+            <div class="lg:grid lg:grid-cols-12 lg:gap-x-16">
+              <div class="mt-10 text-center col-span-6">
+                <div
+                  class="flex items-center bg-primary-400 py-4 px-5 rounded-2xl text-white"
+                >
+                  <button
+                    type="button"
+                    class="-m-1.5 flex flex-none items-center justify-center p-1.5 text-white hover:text-gray-200"
+                  >
+                    <span class="sr-only">Previous month</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-5 h-5"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                      />
+                    </svg>
+                  </button>
+                  <div class="flex-auto text-sm font-semibold">
+                    January 2023
+                  </div>
+                  <button
+                    type="button"
+                    class="-m-1.5 flex flex-none items-center justify-center p-1.5 text-white hover:text-gray-300"
+                  >
+                    <span class="sr-only">Next month</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-5 h-5"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                      />
+                    </svg>
+                  </button>
+                </div>
+                <div
+                  class="mt-3 grid grid-cols-7 text-xs leading-6 text-gray-500"
+                >
+                  <div>M</div>
+                  <div>T</div>
+                  <div>W</div>
+                  <div>T</div>
+                  <div>F</div>
+                  <div>S</div>
+                  <div>S</div>
+                </div>
+                <div
+                  class="isolate mt-2 grid grid-cols-7 gap-px rounded-lg bg-gray-200 text-sm shadow ring-1 ring-gray-200"
+                >
+                  <!--
+                    Always include: "py-1.5 hover:bg-gray-100 focus:z-10"
+                    Is current month, include: "bg-white"
+                    Is not current month, include: "bg-gray-50"
+                    Is selected or is today, include: "font-semibold"
+                    Is selected, include: "text-white"
+                    Is not selected, is not today, and is current month, include: "text-gray-900"
+                    Is not selected, is not today, and is not current month, include: "text-gray-400"
+                    Is today and is not selected, include: "text-primary-400"
+          
+                    Top left day, include: "rounded-tl-lg"
+                    Top right day, include: "rounded-tr-lg"
+                    Bottom left day, include: "rounded-bl-lg"
+                    Bottom right day, include: "rounded-br-lg"
+                  -->
+                  <button
+                    type="button"
+                    class="rounded-tl-lg bg-gray-50 py-1.5 text-gray-400 hover:bg-gray-100 focus:z-10"
+                  >
+                    <!--
+                      Always include: "mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      Is selected and is today, include: "bg-indigo-600"
+                      Is selected and is not today, include: "round-gradient"
+                    -->
+                    <time
+                      datetime="2021-12-27"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >27</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-gray-50 py-1.5 text-gray-400 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2021-12-28"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >28</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-gray-50 py-1.5 text-gray-400 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2021-12-29"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >29</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-gray-50 py-1.5 text-gray-400 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2021-12-30"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >30</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-gray-50 py-1.5 text-gray-400 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2021-12-31"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >31</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-01"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >1</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="rounded-tr-lg bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-01"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >2</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-02"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >3</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-04"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >4</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-05"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >5</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-06"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >6</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-07"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >7</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-08"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >8</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-09"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >9</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-10"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >10</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-11"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >11</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 font-semibold text-primary-400 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-12"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >12</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-13"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >13</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-14"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >14</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-15"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >15</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-16"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >16</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-17"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >17</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-18"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >18</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-19"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >19</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-20"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >20</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-21"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >21</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-22"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full round-gradient font-semibold text-white"
+                      >22</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-23"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >23</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-24"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >24</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-25"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >25</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-26"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >26</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-27"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >27</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-28"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >28</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-29"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >29</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-30"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >30</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="rounded-bl-lg bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-01-31"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >31</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-gray-50 py-1.5 text-gray-400 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-02-01"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >1</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-gray-50 py-1.5 text-gray-400 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-02-02"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >2</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-gray-50 py-1.5 text-gray-400 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-02-03"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >3</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-gray-50 py-1.5 text-gray-400 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-02-04"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >4</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="bg-gray-50 py-1.5 text-gray-400 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-02-05"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >5</time
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="rounded-br-lg bg-gray-50 py-1.5 text-gray-400 hover:bg-gray-100 focus:z-10"
+                  >
+                    <time
+                      datetime="2022-02-06"
+                      class="mx-auto flex h-12 w-12 items-center justify-center rounded-full"
+                      >6</time
+                    >
+                  </button>
+                </div>
+                <!-- <button
+                  type="button"
+                  class="mt-8 w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Add event
+                </button> -->
+              </div>
+              <div class="mt-10 col-span-6">
+                <div class="shadow h-full rounded-xl bg-white p-5">
+                  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      10:00 a.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 hover:bg-gray-100 focus:z-10 text-base font-semibold round-gradient text-white"
+                    >
+                      10:30 a.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      11:00 a.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      11:30 a.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      12:00 a.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      12:30 a.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      01:00 p.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      01:30 p.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      02:00 p.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      02:30 p.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      03:00 p.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      03:30 p.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      04:00 p.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      04:30 p.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      05:00 p.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      05:30 p.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      06:00 p.m
+                    </button>
+                    <button
+                      type="button"
+                      class="bg-gray-50 border border-gray-100 rounded-xl shadow-sm py-4 px-5 text-gray-500 hover:bg-gray-100 focus:z-10 text-base font-semibold"
+                    >
+                      06:30 p.m
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12 lg:mb-24">
+      <div class="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
+        <div class="max-w-2xl mx-auto text-center mb-24">
+          <h2
+            class="text-center mb-5 text-2xl sm:text-3xl lg:text-4xl font-semibold text-primary-300"
+          >
+            Information
+          </h2>
+          <p class="text-center text-gray-900 text-base">
+            Ultrices volutpat et adipiscing eget est risus. Sed massa elementum
+            nec, egestas amet tellus dictumst enim facilisis.
+          </p>
+        </div>
+
+        <div class="max-w-2xl mx-auto mt-8">
+          <form class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+            <div class="sm:col-span-3">
+              <label
+                for="first-name"
+                class="block text-sm font-medium leading-6 text-gray-500"
+                >First name</label
+              >
+              <div class="mt-2">
+                <input
+                  type="text"
+                  value="Jaded"
+                  name="first-name"
+                  id="first-name"
+                  autocomplete="given-name"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-primary-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6 transition"
+                />
+              </div>
+            </div>
+            <div class="sm:col-span-3">
+              <label
+                for="first-name"
+                class="block text-sm font-medium leading-6 text-gray-500"
+                >Last name</label
+              >
+              <div class="mt-2">
+                <input
+                  type="text"
+                  value="Pixel"
+                  name="first-name"
+                  id="first-name"
+                  autocomplete="given-name"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-primary-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6 transition"
+                />
+              </div>
+            </div>
+
+            <div class="sm:col-span-3">
+              <label
+                for="first-name"
+                class="block text-sm font-medium leading-6 text-gray-500"
+                >Email Address</label
+              >
+              <div class="mt-2">
+                <input
+                  type="email"
+                  value="JadedPixeL@gmail.com"
+                  name="first-name"
+                  id="first-name"
+                  autocomplete="given-name"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-primary-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6 transition"
+                />
+              </div>
+            </div>
+
+            <div class="sm:col-span-3">
+              <label
+                for="first-name"
+                class="block text-sm font-medium leading-6 text-gray-500"
+                >Phone Number</label
+              >
+              <div class="mt-2">
+                <input
+                  type="text"
+                  value="+1 (464) 565 - 777 - 744"
+                  name="first-name"
+                  id="first-name"
+                  autocomplete="given-name"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-primary-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6 transition"
+                />
+              </div>
+            </div>
+
+            <div class="col-span-full">
+              <label
+                for="first-name"
+                class="block text-sm font-medium leading-6 text-gray-500"
+                >Message</label
+              >
+              <div class="mt-2">
+                <textarea
+                  type="text"
+                  rows="5"
+                  value="Tellus, nisl erat augue et porttitor proin adipiscing vel eu. In vel arcu pretium sed neque et eu, eget."
+                  name="first-name"
+                  id="first-name"
+                  autocomplete="given-name"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-primary-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6 transition"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="col-span-full flex items-center justify-center">
+              <button class="primary-button px-20" type="submit">Booking</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 mt-12 footer-shadow">
+      <div class="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
+        <div
+          class="flex flex-col md:flex-row space-y-5 md:space-y-0 md:space-x-5 items-center justify-between"
+        >
+          <a href="/" class="flex flex-shrink-0 items-center">
+            <img
+              class="h-14 w-auto"
+              src="./dist/img/logo.png"
+              alt="Your Company"
+            />
+          </a>
+
+          <div
+            class="text-primary-300 text-center text-xl sm:text-2xl lg:text-3xl font-semibold"
+          >
+            Let’s work together
+          </div>
+          <div>
+            <div class="flex items-center space-x-3 text-gray-500">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-5 h-5"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+
+              <div>+ 1 (47464) 4745-3636-1</div>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-500 mt-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+
+              <div>Boston, 34362 Baket str. 12</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

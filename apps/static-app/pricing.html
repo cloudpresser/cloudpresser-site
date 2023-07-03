@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cloud Presser | Pricing</title>
+
+    <link rel="stylesheet" href="./dist/main.css" />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+  </head>
+  <body class="bg-white">
+    <!-- Hero section -->
+    <header class="relative flex flex-col min-h-screen h-full">
+      <!-- background -->
+      <div class="absolute flex justify-end inset-0 w-full h-full z-0">
+        <img
+          src="./dist/img/calender-hero-bg.png"
+          class="w-2/3 h-full object-cover object-left"
+          alt=""
+        />
+      </div>
+
+      <nav class="bg-transparent" x-data="{mobileNav: false}">
+        <div class="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
+          <div class="relative flex h-20 items-center justify-between">
+            <div class="absolute inset-y-0 left-0 flex items-center">
+              <a href="/" class="flex flex-shrink-0 items-center">
+                <img
+                  class="block h-8 w-auto lg:hidden"
+                  src="./dist/img/logo.png"
+                  alt="Your Company"
+                />
+                <img
+                  class="hidden h-14 w-auto lg:block"
+                  src="./dist/img/logo.png"
+                  alt="Your Company"
+                />
+              </a>
+            </div>
+            <div
+              class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
+            ></div>
+            <div
+              class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+            >
+              <!-- Mobile menu button-->
+              <button
+                type="button"
+                class="inline-flex items-center justify-center rounded-md p-2 text-black md:text-white lg:hidden"
+                aria-controls="mobile-menu"
+                @click="mobileNav = !mobileNav"
+                aria-expanded="false"
+              >
+                <span class="sr-only">Open main menu</span>
+                <!--
+                   Icon when menu is closed.
+     
+                   Menu open: "hidden", Menu closed: "block"
+                 -->
+                <svg
+                  class="h-6 w-6"
+                  x-clock
+                  x-show="!mobileNav"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
+                </svg>
+                <!--
+                   Icon when menu is open.
+     
+                   Menu open: "block", Menu closed: "hidden"
+                 -->
+                <svg
+                  class="h-6 w-6"
+                  x-clock
+                  x-show="mobileNav"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+              <div class="hidden sm:ml-6 lg:block">
+                <div class="flex space-x-4">
+                  <a
+                    href="/"
+                    class="text-white hover:text-gray-100 transition px-3 py-2 text-sm font-medium "
+                    >Home</a
+                  >
+                  <a
+                    href="./calender.html"
+                    class="text-white hover:text-gray-100 transition px-3 py-2 text-sm font-medium"
+                    >Calender</a
+                  >
+                  <a
+                    href="./pricing.html"
+                    class="text-white hover:text-gray-100 transition px-3 py-2 text-sm font-medium underline"
+                    >Price</a
+                  >
+                  <a
+                    href="./blog.html"
+                    class="text-white hover:text-gray-100 transition px-3 py-2 text-sm font-medium"
+                    >Blog</a
+                  >
+                  <a
+                    href="/#contact"
+                    class="text-white hover:text-gray-100 transition px-3 py-2 text-sm font-medium"
+                    >Contact</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div
+          class="lg:hidden relative z-10"
+          id="mobile-menu"
+          x-show="mobileNav"
+          x-clock
+        >
+          <div class="space-y-1 px-2 pb-3 pt-2">
+            <!-- Current: "bg-primary-400 text-white", Default: "text-gray-600 hover:bg-gray-700 hover:text-white" -->
+            <a
+              href="/"
+              class="bg-primary-400 text-white block rounded-md px-3 py-2 text-base font-medium"
+              aria-current="page"
+              >Home</a
+            >
+            <a
+              href="#"
+              class="text-gray-600 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+              >Team</a
+            >
+            <a
+              href="#"
+              class="text-gray-600 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+              >Projects</a
+            >
+            <a
+              href="./calender.html"
+              class="text-gray-600 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+              >Calendar</a
+            >
+          </div>
+        </div>
+      </nav>
+
+      <div
+        class="flex-1 relative z-10 mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16 md:flex justify-between items-center w-full py-12"
+      >
+        <div class="md:max-w-lg">
+          <h1
+            class="text-primary-400 text-2xl sm:text-3xl xl:text-4xl font-semibold text-center md:text-left"
+          >
+            Let’s choose plan
+          </h1>
+          <p class="text-sm mt-6 text-gray-800 text-center md:text-left">
+            In in commodo dictum vel purus, pellentesque ipsum et. Sem convallis
+            in ullamcorper vitae viverra. Neque, dignissim in id at tempor, arcu
+            massa ornare in.
+          </p>
+        </div>
+
+        <div class="mt-6 md:mt-0">
+          <img
+            src="./dist/img/pricing-hero.png"
+            class="md:h-[510px] max-h-[550px] object-contain"
+            alt=""
+          />
+        </div>
+      </div>
+    </header>
+
+    <!-- Packages -->
+    <section class="bg-white py-12 lg:py-20 overflow-hidden max-w-full">
+      <div class="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
+        <div class="max-w-xl mx-auto text-center mb-12">
+          <h2
+            class="text-center mb-5 text-2xl sm:text-3xl lg:text-4xl font-semibold text-primary-300"
+          >
+            Strategic Consulting
+          </h2>
+          <p class="text-center text-gray-900 text-base">
+            Ultrices volutpat et adipiscing eget est risus. Sed massa elementum
+            nec, egestas amet tellus dictumst enim facilisis.
+          </p>
+        </div>
+
+        <div class="mt-6">
+          <div
+            class="bg-white p-5 lg:p-10 rounded-xl relative overflow-hidden"
+            style="
+              box-shadow: 0px 0px 4px rgba(0, 155, 218, 0.1),
+                0px 8px 40px rgba(0, 155, 218, 0.2);
+            "
+          >
+            <div class="flex flex-col sm:flex-row sm:justify-between relative z-10">
+              <div class="sm:order-2 sm:text-right mb-3 sm:mb-0">
+                <div class="text-gray-600 text-sm mb-1 sm:mb-3">
+                  Starting at
+                </div>
+                <div
+                  class="text-xl lg:text-4xl font-semibold text-primary-400 truncate"
+                >
+                  $ 550 /<small>mo</small>
+                </div>
+              </div>
+
+              <div>
+                <h2 class="text-black font-semibold text-lg lg:text-4xl">
+                  Strategic Consulting
+                </h2>
+                <p class="text-sm mt-4 text-gray-800 max-w-xl">
+                  Ultrices volutpat et adipiscing eget est risus. Sed massa
+                  elementum nec, egestas amet tellus dictumst enim facilisis.
+                </p>
+                <div class="mt-6">
+                  <a href="#" class="secondary-button">See what's included</a>
+                </div>
+              </div>
+            </div>
+            <!-- spacer -->
+            <div class="h-20 md:h-36 w-full"></div>
+
+            <!-- shape -->
+            <img src="./dist/img/blobs/shape-1.svg" class="absolute w-full h-auto bottom-0 z-0 inset-x-0 " alt="">
+
+          </div>
+        </div>
+
+        <div class="max-w-xl mx-auto text-center mb-12 mt-24">
+          <h2
+            class="text-center mb-5 text-2xl sm:text-3xl lg:text-4xl font-semibold text-primary-300"
+          >
+            Setup & Design Packages
+          </h2>
+          <p class="text-center text-gray-900 text-base">
+            Ultrices volutpat et adipiscing eget est risus. Sed massa elementum nec, egestas amet tellus dictumst enim facilisis.
+          </p>
+        </div>
+
+        <div class="mt-6">
+          <div
+            class="bg-white p-5 lg:p-10 rounded-xl relative overflow-hidden"
+            style="
+              box-shadow: 0px 0px 4px rgba(0, 155, 218, 0.1),
+                0px 8px 40px rgba(0, 155, 218, 0.2);
+            "
+          >
+            <div class="flex flex-col sm:flex-row sm:justify-between relative z-10">
+              <div class="sm:order-2 sm:text-right mb-3 sm:mb-0">
+                <div class="text-gray-600 text-sm mb-1 sm:mb-3">
+                  Starting at
+                </div>
+                <div
+                  class="text-xl lg:text-4xl font-semibold text-primary-400 truncate"
+                >
+                $ 1600 /<small>mo</small>
+                </div>
+              </div>
+
+              <div>
+                <h2 class="text-black font-semibold text-lg lg:text-4xl">
+                  Standart Setup
+                </h2>
+                <p class="text-sm mt-4 text-gray-800 max-w-xl">
+                  Ultrices volutpat et adipiscing eget est risus. Sed massa elementum nec, egestas amet tellus dictumst enim facilisis.
+                </p>
+                <div class="mt-6">
+                  <a href="#" class="secondary-button">See what's included</a>
+                </div>
+              </div>
+            </div>
+            <!-- spacer -->
+            <div class="h-20 md:h-36 w-full"></div>
+
+            <!-- shape -->
+            <img src="./dist/img/blobs/shape-2.svg" class="absolute w-full h-auto bottom-0 z-0 inset-x-0 " alt="">
+
+          </div>
+        </div>
+        <div class="mt-10">
+          <div
+            class="bg-white p-5 lg:p-10 rounded-xl relative overflow-hidden"
+            style="
+              box-shadow: 0px 0px 4px rgba(0, 155, 218, 0.1),
+                0px 8px 40px rgba(0, 155, 218, 0.2);
+            "
+          >
+            <div class="flex flex-col sm:flex-row sm:justify-between relative z-10">
+              <div class="sm:order-2 sm:text-right mb-3 sm:mb-0">
+                <div class="text-gray-600 text-sm mb-1 sm:mb-3">
+                  Starting at
+                </div>
+                <div
+                  class="text-xl lg:text-4xl font-semibold text-primary-400 truncate"
+                >
+                $ 2500 /<small>mo</small>
+                </div>
+              </div>
+
+              <div>
+                <h2 class="text-black font-semibold text-lg lg:text-4xl">
+                  Premium Setup
+                </h2>
+                <p class="text-sm mt-4 text-gray-800 max-w-xl">
+                  Ultrices volutpat et adipiscing eget est risus. Sed massa elementum nec, egestas amet tellus dictumst enim facilisis.
+                </p>
+                <div class="mt-6">
+                  <a href="#" class="secondary-button">See what's included</a>
+                </div>
+              </div>
+            </div>
+            <!-- spacer -->
+            <div class="h-20 md:h-36 w-full"></div>
+
+            <!-- shape -->
+            <img src="./dist/img/blobs/shape-3.svg" class="absolute w-full h-auto bottom-0 z-0 inset-x-0 " alt="">
+
+          </div>
+        </div>
+
+        <div class="mt-10">
+          <div
+            class="bg-white p-5 lg:p-10 rounded-xl relative overflow-hidden"
+            style="
+              box-shadow: 0px 0px 4px rgba(0, 155, 218, 0.1),
+                0px 8px 40px rgba(0, 155, 218, 0.2);
+            "
+          >
+            <div class="flex flex-col sm:flex-row sm:justify-between relative z-10">
+              <div class="sm:order-2 sm:text-right mb-3 sm:mb-0">
+                <div class="text-gray-600 text-sm mb-1 sm:mb-3">
+                  Starting at
+                </div>
+                <div
+                  class="text-xl lg:text-4xl font-semibold text-primary-400 truncate"
+                >
+                $ 7500 /<small>mo</small>
+                </div>
+              </div>
+
+              <div>
+                <h2 class="text-black font-semibold text-lg lg:text-4xl">
+                  Signature Setup
+                </h2>
+                <p class="text-sm mt-4 text-gray-800 max-w-xl">
+                  Ultrices volutpat et adipiscing eget est risus. Sed massa elementum nec, egestas amet tellus dictumst enim facilisis.
+                </p>
+                <div class="mt-6">
+                  <a href="#" class="secondary-button">See what's included</a>
+                </div>
+              </div>
+            </div>
+            <!-- spacer -->
+            <div class="h-20 md:h-36 w-full"></div>
+
+            <!-- shape -->
+            <img src="./dist/img/blobs/shape-4.svg" class="absolute w-full h-auto bottom-0 z-0 inset-x-0 " alt="">
+
+          </div>
+        </div>
+
+        
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 mt-12 footer-shadow">
+      <div class="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
+        <div
+          class="flex flex-col md:flex-row space-y-5 md:space-y-0 md:space-x-5 items-center justify-between"
+        >
+          <a href="/" class="flex flex-shrink-0 items-center">
+            <img
+              class="h-14 w-auto"
+              src="./dist/img/logo.png"
+              alt="Your Company"
+            />
+          </a>
+
+          <div
+            class="text-primary-300 text-center text-xl sm:text-2xl lg:text-3xl font-semibold"
+          >
+            Let’s work together
+          </div>
+          <div>
+            <div class="flex items-center space-x-3 text-gray-500">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-5 h-5"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+
+              <div>+ 1 (47464) 4745-3636-1</div>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-500 mt-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+
+              <div>Boston, 34362 Baket str. 12</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

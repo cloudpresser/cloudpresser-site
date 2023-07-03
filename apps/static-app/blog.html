@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cloud Presser | Blog</title>
+
+    <link rel="stylesheet" href="./dist/main.css" />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+  </head>
+  <body class="bg-white">
+    <!-- Hero section -->
+    <header class="relative flex flex-col">
+      <nav class="bg-transparent" x-data="{mobileNav: false}">
+        <div class="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
+          <div class="relative flex h-20 items-center justify-between">
+            <div class="absolute inset-y-0 left-0 flex items-center">
+              <a href="/" class="flex flex-shrink-0 items-center">
+                <img
+                  class="block h-8 w-auto lg:hidden"
+                  src="./dist/img/logo.png"
+                  alt="Your Company"
+                />
+                <img
+                  class="hidden h-14 w-auto lg:block"
+                  src="./dist/img/logo.png"
+                  alt="Your Company"
+                />
+              </a>
+            </div>
+            <div
+              class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
+            ></div>
+            <div
+              class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+            >
+              <!-- Mobile menu button-->
+              <button
+                type="button"
+                class="inline-flex items-center justify-center rounded-md p-2 text-black lg:hidden"
+                aria-controls="mobile-menu"
+                @click="mobileNav = !mobileNav"
+                aria-expanded="false"
+              >
+                <span class="sr-only">Open main menu</span>
+                <!--
+                   Icon when menu is closed.
+     
+                   Menu open: "hidden", Menu closed: "block"
+                 -->
+                <svg
+                  class="h-6 w-6"
+                  x-clock
+                  x-show="!mobileNav"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
+                </svg>
+                <!--
+                   Icon when menu is open.
+     
+                   Menu open: "block", Menu closed: "hidden"
+                 -->
+                <svg
+                  class="h-6 w-6"
+                  x-clock
+                  x-show="mobileNav"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+              <div class="hidden sm:ml-6 lg:block">
+                <div class="flex space-x-4">
+                  <a
+                    href="/"
+                    class="text-gray-800 hover:text-gray-600 font-semibold transition px-3 py-2 text-sm"
+                    >Home</a
+                  >
+                  <a
+                    href="./calender.html"
+                    class="text-gray-800 hover:text-gray-600 font-semibold transition px-3 py-2 text-sm"
+                    >Calender</a
+                  >
+                  <a
+                    href="./pricing.html"
+                    class="text-gray-800 hover:text-gray-600 font-semibold transition px-3 py-2 text-sm"
+                    >Price</a
+                  >
+                  <a
+                    href="./blog.html"
+                    class="text-gray-800 hover:text-gray-600 font-semibold transition px-3 py-2 text-sm underline"
+                    >Blog</a
+                  >
+                  <a
+                    href="/#contact"
+                    class="text-gray-800 hover:text-gray-600 font-semibold transition px-3 py-2 text-sm"
+                    >Contact</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div
+          class="lg:hidden relative z-10"
+          id="mobile-menu"
+          x-show="mobileNav"
+          x-clock
+        >
+          <div class="space-y-1 px-2 pb-3 pt-2">
+            <!-- Current: "bg-primary-400 text-white", Default: "text-gray-600 hover:bg-gray-700 hover:text-white" -->
+            <a
+              href="/"
+              class="bg-primary-400 text-white block rounded-md px-3 py-2 text-base font-medium"
+              aria-current="page"
+              >Home</a
+            >
+            <a
+              href="#"
+              class="text-gray-600 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+              >Team</a
+            >
+            <a
+              href="#"
+              class="text-gray-600 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+              >Projects</a
+            >
+            <a
+              href="./calender.html"
+              class="text-gray-600 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+              >Calendar</a
+            >
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Blog -->
+    <section class="bg-white py-12">
+      <div class="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
+        <article class="md:flex md:items-center">
+          <div class="flex-shrink-0 w-full md:w-1/2">
+            <div
+              style="
+                box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1),
+                  0px 4px 20px rgba(0, 0, 0, 0.15);
+              "
+              class="max-h-[450px] w-full rounded-xl overflow-hidden"
+            >
+              <img
+                src="./dist/img/blog/blog-1.png"
+                class="w-full h-full object-cover object-center"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="w-full md:w-1/2 md:pl-5 mt-5 md:mt-0">
+            <div class="flex items-center gap-x-4 text-xs">
+              <a
+                href="#"
+                class="relative z-10 text-base font-semibold text-gray-900"
+                >Search</a
+              >
+            </div>
+            <div class="group relative">
+              <h3
+                class="mt-3 text-xl md:text-2xl lg:text-4xl xl:text-5xl font-semibold leading-6 text-primary-400 transition"
+              >
+                <a href="./post.html">
+                  <span class="absolute inset-0"></span>
+                  Felis consequat turpis platea lacus turpis donec eget. Purus
+                  quis diam orci quis faucibus ultrices.
+                </a>
+              </h3>
+              <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-800">
+                In in commodo dictum vel purus, pellentesque ipsum et. Sem
+                convallis in ullamcorper vitae viverra. Neque, dignissim in id
+                at tempor, arcu massa ornare in.
+              </p>
+            </div>
+            <div class="mt-3">
+              <a
+                href="#"
+                class="text-success underline hover:no-underline font-semibold"
+              >
+                Read more
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <div class="py-6">
+          <div
+            class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+          >
+            <article class="flex flex-col items-start justify-between">
+              <div class="max-w-xl">
+                <div class="mt-8 flex items-center gap-x-4 text-xs">
+                  <a href="#" class="relative z-10 font-medium text-gray-500"
+                    >News</a
+                  >
+                </div>
+                <div class="group relative">
+                  <h3
+                    class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600"
+                  >
+                    <a href="#">
+                      <span class="absolute inset-0"></span>
+                      Sem feugiat tellus in id pretium urna. Posuere facilisis
+                      nunc lectus lacus maecenas sodales enim, donec.
+                    </a>
+                  </h3>
+                </div>
+              </div>
+              <div class="relative w-full mt-4">
+                <img
+                  src="./dist/img/blog/blog-2.png"
+                  alt=""
+                  class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+                />
+                <div
+                  class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"
+                ></div>
+              </div>
+            </article>
+            <article class="flex flex-col items-start justify-between">
+              <div class="max-w-xl">
+                <div class="mt-8 flex items-center gap-x-4 text-xs">
+                  <a href="#" class="relative z-10 font-medium text-gray-500"
+                    >Education</a
+                  >
+                </div>
+                <div class="group relative">
+                  <h3
+                    class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600"
+                  >
+                    <a href="#">
+                      <span class="absolute inset-0"></span>
+                      Sem feugiat tellus in id pretium urna. Posuere facilisis
+                      nunc lectus lacus maecenas sodales enim, donec.
+                    </a>
+                  </h3>
+                </div>
+              </div>
+              <div class="relative w-full mt-4">
+                <img
+                  src="./dist/img/blog/blog-3.png"
+                  alt=""
+                  class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+                />
+                <div
+                  class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"
+                ></div>
+              </div>
+            </article>
+            <article class="flex flex-col items-start justify-between">
+              <div class="max-w-xl">
+                <div class="mt-8 flex items-center gap-x-4 text-xs">
+                  <a href="#" class="relative z-10 font-medium text-gray-500"
+                    >Digital</a
+                  >
+                </div>
+                <div class="group relative">
+                  <h3
+                    class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600"
+                  >
+                    <a href="#">
+                      <span class="absolute inset-0"></span>
+                      Sem feugiat tellus in id pretium urna. Posuere facilisis
+                      nunc lectus lacus maecenas sodales enim, donec.
+                    </a>
+                  </h3>
+                </div>
+              </div>
+              <div class="relative w-full mt-4">
+                <img
+                  src="./dist/img/blog/blog-4.png"
+                  alt=""
+                  class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+                />
+                <div
+                  class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"
+                ></div>
+              </div>
+            </article>
+
+            <!-- More posts... -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- all news -->
+    <section class="bg-white py-12">
+      <div class="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
+        <div class="bg-white">
+          <div class="mx-auto max-w-2xl lg:max-w-screen-2xl">
+            <h3 class="text-black text-xl font-semibold">All News</h3>
+
+            <div class="mt-8 divide-y divide-gray-400 border-b border-gray-400">
+              <article class="relative isolate flex flex-col gap-8 lg:flex-row py-10">
+                <div class="flex-1">
+                  <div class="flex items-center gap-x-4 text-xs">
+                    <span class="relative z-10 font-medium text-gray-600"
+                      >February 10, 2021</a
+                    >
+                  </div>
+                  <div class="group relative">
+                    <h3
+                      class="mt-3 text-lg font-semibold leading-6 text-primary-400"
+                    >
+                      <a href="#">
+                        <span class="absolute inset-0"></span>
+                        Dictumst consectetur purus ut tellus. Amet, congue
+                        volutpat luctus eleifend. Enim vulputate diam facilisis
+                        bibendum massa blandit fringilla.
+                      </a>
+                    </h3>
+                    <p class="mt-5 text-sm leading-6 text-gray-800">
+                      Velit, nisl netus elementum ipsum, venenatis, turpis
+                      tellus turpis. Tincidunt eleifend diam condimentum
+                      rhoncus. Bibendum arcu aliquet odio pulvinar a eu,
+                      curabitur. Neque ultricies eu lobortis dictum nam duis.
+                      Condimentum amet sodales velit faucibus tincidunt nullam
+                      quis ullamcorper.
+                    </p>
+                  </div>
+                  <div class="mt-6">
+                    <a
+                      href="#"
+                      class="text-success underline hover:no-underline font-semibold"
+                    >
+                      Read more
+                    </a>
+                  </div>
+                </div>
+                <div class="relative aspect-video lg:w-96 lg:shrink-0">
+                  <img
+                    src="./dist/img/blog/blog-5.png"
+                    alt=""
+                    class="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover"
+                  />
+                </div>
+              </article>
+              <article class="relative isolate flex flex-col gap-8 lg:flex-row py-10">
+                <div class="flex-1">
+                  <div class="flex items-center gap-x-4 text-xs">
+                    <span class="relative z-10 font-medium text-gray-600"
+                      >February 10, 2021</a
+                    >
+                  </div>
+                  <div class="group relative">
+                    <h3
+                      class="mt-3 text-lg font-semibold leading-6 text-primary-400"
+                    >
+                      <a href="#">
+                        <span class="absolute inset-0"></span>
+                        Dictumst consectetur purus ut tellus. Amet, congue
+                        volutpat luctus eleifend. Enim vulputate diam facilisis
+                        bibendum massa blandit fringilla.
+                      </a>
+                    </h3>
+                    <p class="mt-5 text-sm leading-6 text-gray-800">
+                      Velit, nisl netus elementum ipsum, venenatis, turpis
+                      tellus turpis. Tincidunt eleifend diam condimentum
+                      rhoncus. Bibendum arcu aliquet odio pulvinar a eu,
+                      curabitur. Neque ultricies eu lobortis dictum nam duis.
+                      Condimentum amet sodales velit faucibus tincidunt nullam
+                      quis ullamcorper.
+                    </p>
+                  </div>
+                  <div class="mt-6">
+                    <a
+                      href="#"
+                      class="text-success underline hover:no-underline font-semibold"
+                    >
+                      Read more
+                    </a>
+                  </div>
+                </div>
+                <div class="relative aspect-video lg:w-96 lg:shrink-0">
+                  <img
+                    src="./dist/img/blog/blog-6.png"
+                    alt=""
+                    class="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover"
+                  />
+                </div>
+              </article>
+              <article class="relative isolate flex flex-col gap-8 lg:flex-row py-10">
+                <div class="flex-1">
+                  <div class="flex items-center gap-x-4 text-xs">
+                    <span class="relative z-10 font-medium text-gray-600"
+                      >February 10, 2021</a
+                    >
+                  </div>
+                  <div class="group relative">
+                    <h3
+                      class="mt-3 text-lg font-semibold leading-6 text-primary-400"
+                    >
+                      <a href="#">
+                        <span class="absolute inset-0"></span>
+                        Dictumst consectetur purus ut tellus. Amet, congue
+                        volutpat luctus eleifend. Enim vulputate diam facilisis
+                        bibendum massa blandit fringilla.
+                      </a>
+                    </h3>
+                    <p class="mt-5 text-sm leading-6 text-gray-800">
+                      Velit, nisl netus elementum ipsum, venenatis, turpis
+                      tellus turpis. Tincidunt eleifend diam condimentum
+                      rhoncus. Bibendum arcu aliquet odio pulvinar a eu,
+                      curabitur. Neque ultricies eu lobortis dictum nam duis.
+                      Condimentum amet sodales velit faucibus tincidunt nullam
+                      quis ullamcorper.
+                    </p>
+                  </div>
+                  <div class="mt-6">
+                    <a
+                      href="#"
+                      class="text-success underline hover:no-underline font-semibold"
+                    >
+                      Read more
+                    </a>
+                  </div>
+                </div>
+                <div class="relative aspect-video lg:w-96 lg:shrink-0">
+                  <img
+                    src="./dist/img/blog/blog-7.png"
+                    alt=""
+                    class="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover"
+                  />
+                </div>
+              </article>
+              <article class="relative isolate flex flex-col gap-8 lg:flex-row py-10">
+                <div class="flex-1">
+                  <div class="flex items-center gap-x-4 text-xs">
+                    <span class="relative z-10 font-medium text-gray-600"
+                      >February 10, 2021</a
+                    >
+                  </div>
+                  <div class="group relative">
+                    <h3
+                      class="mt-3 text-lg font-semibold leading-6 text-primary-400"
+                    >
+                      <a href="#">
+                        <span class="absolute inset-0"></span>
+                        Dictumst consectetur purus ut tellus. Amet, congue
+                        volutpat luctus eleifend. Enim vulputate diam facilisis
+                        bibendum massa blandit fringilla.
+                      </a>
+                    </h3>
+                    <p class="mt-5 text-sm leading-6 text-gray-800">
+                      Velit, nisl netus elementum ipsum, venenatis, turpis
+                      tellus turpis. Tincidunt eleifend diam condimentum
+                      rhoncus. Bibendum arcu aliquet odio pulvinar a eu,
+                      curabitur. Neque ultricies eu lobortis dictum nam duis.
+                      Condimentum amet sodales velit faucibus tincidunt nullam
+                      quis ullamcorper.
+                    </p>
+                  </div>
+                  <div class="mt-6">
+                    <a
+                      href="#"
+                      class="text-success underline hover:no-underline font-semibold"
+                    >
+                      Read more
+                    </a>
+                  </div>
+                </div>
+                <div class="relative aspect-video lg:w-96 lg:shrink-0">
+                  <img
+                    src="./dist/img/blog/blog-8.png"
+                    alt=""
+                    class="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover"
+                  />
+                </div>
+              </article>
+            </div>
+
+            <nav class="flex items-center justify-center space-x-4 mt-7">
+              <a href="#" class="text-white bg-primary-400 flex items-center justify-center w-8 h-8 rounded text-base font-semibold leading-3 border border-primary-400">
+                1
+              </a>
+              <a href="#" class="text-gray-500 bg-white flex items-center justify-center w-8 h-8 rounded text-base font-semibold leading-3 border border-primary-400">
+                2
+              </a>
+              <a href="#" class="text-gray-500 bg-white flex items-center justify-center w-8 h-8 rounded text-base font-semibold leading-3 border border-primary-400">
+                ...
+              </a>
+              <a href="#" class="text-gray-500 bg-white flex items-center justify-center w-8 h-8 rounded text-base font-semibold leading-3 border border-primary-400">
+                9
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 mt-12 footer-shadow">
+      <div class="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
+        <div
+          class="flex flex-col md:flex-row space-y-5 md:space-y-0 md:space-x-5 items-center justify-between"
+        >
+          <a href="/" class="flex flex-shrink-0 items-center">
+            <img
+              class="h-14 w-auto"
+              src="./dist/img/logo.png"
+              alt="Your Company"
+            />
+          </a>
+
+          <div
+            class="text-primary-300 text-center text-xl sm:text-2xl lg:text-3xl font-semibold"
+          >
+            Let’s work together
+          </div>
+          <div>
+            <div class="flex items-center space-x-3 text-gray-500">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-5 h-5"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+
+              <div>+ 1 (47464) 4745-3636-1</div>
+            </div>
+            <div class="flex items-center space-x-3 text-gray-500 mt-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+
+              <div>Boston, 34362 Baket str. 12</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
