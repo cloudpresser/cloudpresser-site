@@ -4,7 +4,8 @@
     "workspaces": [
         "apps/*",
         "libs/*",
-        "features/*"
+        "features/*",
+        "workers/*"
     ],
     "scripts": {
         "static": "yarn workspace @cloudpresser/static watch:css",
