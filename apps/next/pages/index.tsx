@@ -22,11 +22,6 @@ export default function Home() {
       subtitle='Ultrices volutpat et adipiscing eget est risus. Sed massa elementum nec, egestas amet tellus dictumst enim facilisis.'
       onSubmit={message=> alert(JSON.stringify(message))} 
     />}
-    <Footer 
-      callToAction="Let's work together"
-      phoneNumber='(919) 355-6557'
-      address='Raleigh, NC'
-    />
    </>
   )
 }
