@@ -345,7 +345,7 @@ const Header = (props: any) => {
             className="mt-4 flex flex-row md:flex-col md:space-y-3 space-x-3 md:space-x-0 justify-center md:justify-start md:items-start"
           >
             {flags.calendar && <a href="#" className="primary-button truncate">Schedule Now</a>}
-            {flags.contact && <a href="#" className="secondary-button truncate">Second Button</a>}
+            {flags.contact && <a href="#contact" className="secondary-button truncate">Contact Us</a>}
           </div>
         </div>
 
