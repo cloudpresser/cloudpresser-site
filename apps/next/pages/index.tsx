@@ -5,24 +5,24 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-   <>
-    <Head>
-      <title>CloudPresser Universal Apps & ML</title>
-    </Head>
-    <Header />
-    {
-      flags.services && (<Services
-      title='Our Services'
-      subtitle='Our team of experienced React Native developers can help you with the following services:'
-      serviceList={services as any}
-    />)}
-    {flags.portfolio && <Portfolio />}
-    {flags.contact && <Contact 
-      title='Contact Us'
-      subtitle='Ultrices volutpat et adipiscing eget est risus. Sed massa elementum nec, egestas amet tellus dictumst enim facilisis.'
-      onSubmit={message=> alert(JSON.stringify(message))} 
-    />}
-   </>
+    <>
+      <Head>
+        <title>CloudPresser Universal Apps & ML</title>
+      </Head>
+      <Header />
+      {
+        flags.services && (<Services
+          title='Our Services'
+          subtitle='Our team of experienced React Native developers can help you with the following services:'
+          serviceList={services as any}
+        />)}
+      {flags.portfolio && <Portfolio />}
+      {flags.contact && <Contact
+        title='Contact Us'
+        subtitle='Ultrices volutpat et adipiscing eget est risus. Sed massa elementum nec, egestas amet tellus dictumst enim facilisis.'
+        onSubmit={message => alert(JSON.stringify(message))}
+      />}
+    </>
   )
 }
 
@@ -48,7 +48,7 @@ const Services = (props: {
   }]
 }) => {
   return (
-  <section className="bg-white py-12 lg:py-20 overflow-hidden max-w-full">
+    <section className="bg-white py-12 lg:py-20 overflow-hidden max-w-full">
       <div className="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
         <div className="max-w-xl mx-auto text-center mb-24">
           <h2
@@ -63,7 +63,7 @@ const Services = (props: {
         </div>
 
         <div className="w-full grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-        <a href={`/services/${props.serviceList[0].id}`} className="transition-all ease-in-out delay-150 relative hover:-translate-y-5 group z-10">
+          <a href={`/services/${props.serviceList[0].id}`} className="transition-all ease-in-out delay-150 relative hover:-translate-y-5 group z-10">
             <div
               className="transition-all ease-in-out delay-150 text-2xl group-hover:text-3xl flex leading-3 items-center justify-center font-bold text-white w-16 group-hover:w-24 h-16 group-hover:h-24 rounded-full round-solid group-hover:round-gradient absolute -left-5 group-hover:-left-6 -top-5 group-hover:-top-10 z-20"
             >
@@ -178,7 +178,7 @@ const Services = (props: {
         </div>
       </div>
     </section>
-    )
+  )
 }
 
 const Portfolio = (props: any) => {
@@ -318,49 +318,49 @@ const Portfolio = (props: any) => {
 }
 
 const Header = (props: any) => {
-  
+
   return (
     <header className="relative flex flex-col min-h-screen h-full">
-    <div className="absolute inset-0 w-full h-full z-0">
-      <img
-        src="/backgroung.png"
-        className="w-full h-full object-cover object-left"
-        alt=""
-      />
-    </div>
-    <NavBar theme='light'/>
-    <div
-      className="flex-1 relative z-10 mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16 md:flex justify-between items-center w-full py-12"
-    >
-      <div className="md:max-w-lg">
-        <h1
-          className="text-primary-400 text-2xl sm:text-3xl xl:text-4xl font-semibold text-center md:text-left"
-        >
-          React Native Development as a Service
-        </h1>
-        <p className="text-sm mt-6 text-gray-800 text-center md:text-left">
-        At CloudPresser, we offer a full range of React Native development services to help your business grow. From custom web and mobile apps to data analysis and machine learning, we have the expertise to bring your ideas to life.
-        </p>
-        <div
-          className="mt-4 flex flex-row md:flex-col md:space-y-3 space-x-3 md:space-x-0 justify-center md:justify-start md:items-start"
-        >
-          {flags.calendar && <a href="#" className="primary-button truncate">Schedule Now</a>}
-          {flags.contact && <a href="#" className="secondary-button truncate">Second Button</a>}
-        </div>
-      </div>
-
-      <div className="mt-6 md:mt-0">
+      <div className="absolute inset-0 w-full h-full z-0">
         <img
-          src="/hero-image.png"
-          className="md:h-[510px] max-h-[550px] object-contain"
+          src="/backgroung.png"
+          className="w-full h-full object-cover object-left"
           alt=""
         />
       </div>
-    </div>
-  </header>
+      <NavBar theme='light' />
+      <div
+        className="flex-1 relative z-10 mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16 md:flex justify-between items-center w-full py-12"
+      >
+        <div className="md:max-w-lg">
+          <h1
+            className="text-primary-400 text-2xl sm:text-3xl xl:text-4xl font-semibold text-center md:text-left"
+          >
+            React Native Development as a Service
+          </h1>
+          <p className="text-sm mt-6 text-gray-800 text-center md:text-left">
+            At CloudPresser, we offer a full range of React Native development services to help your business grow. From custom web and mobile apps to data analysis and machine learning, we have the expertise to bring your ideas to life.
+          </p>
+          <div
+            className="mt-4 flex flex-row md:flex-col md:space-y-3 space-x-3 md:space-x-0 justify-center md:justify-start md:items-start"
+          >
+            {flags.calendar && <a href="#" className="primary-button truncate">Schedule Now</a>}
+            {flags.contact && <a href="#" className="secondary-button truncate">Second Button</a>}
+          </div>
+        </div>
+
+        <div className="mt-6 md:mt-0">
+          <img
+            src="/hero-image.png"
+            className="md:h-[510px] max-h-[550px] object-contain"
+            alt=""
+          />
+        </div>
+      </div>
+    </header>
   )
 }
-export const NavBar = (props: {theme:'dark'|'light'}) => {
+export const NavBar = (props: { theme: 'dark' | 'light' }) => {
   const [navbarOpen, setNavbarOpen] = useState(false)
   const fontStyles = {
     dark: "text-gray-800 hover:text-gray-600",
@@ -384,7 +384,7 @@ export const NavBar = (props: {theme:'dark'|'light'}) => {
               />
             </a>
           </div>
-          <div className="flex flex-1"/>
+          <div className="flex flex-1" />
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <button
               type="button"
@@ -395,7 +395,7 @@ export const NavBar = (props: {theme:'dark'|'light'}) => {
             >
               <span className="sr-only">Open main menu</span>
               <svg
-              className={`h-6 w-6 ${navbarOpen ? "hidden" : "visible"}`}
+                className={`h-6 w-6 ${navbarOpen ? "hidden" : "visible"}`}
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
@@ -427,29 +427,29 @@ export const NavBar = (props: {theme:'dark'|'light'}) => {
                 <a
                   href="/"
                   className={`${fontStyles[props.theme]} font-semibold transition px-3 py-2 text-sm`}
-                  >Home
-                  </a>
-                  <a
+                >Home
+                </a>
+                <a
                   href="/#services"
                   className={`${fontStyles[props.theme]} font-semibold transition px-3 py-2 text-sm`}
-                  >Services
-                  </a>
+                >Services
+                </a>
                 {flags.calendar && <a
                   href="./calender.html"
                   className={`${fontStyles[props.theme]} font-semibold transition px-3 py-2 text-sm`}
-                  >Calendar</a>}
+                >Calendar</a>}
                 {flags.price && <a
                   href="./pricing.html"
                   className={`${fontStyles[props.theme]} font-semibold transition px-3 py-2 text-sm`}
-                  >Price</a>}
+                >Price</a>}
                 {flags.blog && <a
                   href="./blog.html"
                   className={`${fontStyles[props.theme]} font-semibold transition px-3 py-2 text-sm`}
-                  >Blog</a>}
+                >Blog</a>}
                 {flags.contact && <a
                   href="/#contact"
                   className={`${fontStyles[props.theme]} font-semibold transition px-3 py-2 text-sm`}
-                  >Contact</a>}
+                >Contact</a>}
               </div>
             </div>
           </div>
@@ -464,28 +464,28 @@ export const NavBar = (props: {theme:'dark'|'light'}) => {
             href="/"
             className="bg-primary-400 text-white block rounded-md px-3 py-2 text-base font-medium"
             aria-current="page"
-            >Home</a>
-            <a
+          >Home</a>
+          <a
             href="/#services"
             className="text-gray-600 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
             aria-current="page"
-            >Services</a>
+          >Services</a>
           {flags.calendar && <a
             href="#"
             className="text-gray-600 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-            >Calendar</a>}
+          >Calendar</a>}
           {flags.price && <a
             href="#"
             className="text-gray-600 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-            >Price</a>}
+          >Price</a>}
           {flags.blog && <a
             href="#"
             className="text-gray-600 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-            >Blog</a>}
+          >Blog</a>}
           {flags.contact && <a
             href="#"
             className="text-gray-600 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-            >Contact</a>}
+          >Contact</a>}
         </div>
       </div>
     </nav>
@@ -503,13 +503,13 @@ import { flags } from '@/util/flags'
 import { services } from '@/data/services'
 import Head from 'next/head'
 
-const Contact = (props: {title: string, subtitle: string, onSubmit: (message: ContactMessage) => void }) => {
+const Contact = (props: { title: string, subtitle: string, onSubmit: (message: ContactMessage) => void }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [message, setMessage] = useState('')
 
-  type ValidationError = {type: 'phone'| 'email'| 'name'| 'message', message: string}
+  type ValidationError = { type: 'phone' | 'email' | 'name' | 'message', message: string }
   const [errors, setErrors] = useState<ValidationError[]>([])
 
   const handleSubmit = () => {
@@ -521,46 +521,46 @@ const Contact = (props: {title: string, subtitle: string, onSubmit: (message: Co
       phone,
       message
     }
-    
+
     /**
      * Validate and display errors
      */
     let errors: ValidationError[] = []
 
-    if(contactMessage.name === '') {
-      errors.push({type: 'name', message: 'Name is required'})
+    if (contactMessage.name === '') {
+      errors.push({ type: 'name', message: 'Name is required' })
     }
 
-    if(contactMessage.email === '') {
-      errors.push({type: 'email', message: 'Email is required'})
+    if (contactMessage.email === '') {
+      errors.push({ type: 'email', message: 'Email is required' })
     }
 
-    if(contactMessage.phone === '') {
-      errors.push({type: 'phone', message: 'Phone is required'})
+    if (contactMessage.phone === '') {
+      errors.push({ type: 'phone', message: 'Phone is required' })
     }
 
-    if(contactMessage.message === '') {
-      errors.push({type: 'message', message: 'Message is required'})
+    if (contactMessage.message === '') {
+      errors.push({ type: 'message', message: 'Message is required' })
     }
 
     if (!validateEmailRegex(email)) {
-      errors.push({type: 'email', message: 'Email is invalid'})
+      errors.push({ type: 'email', message: 'Email is invalid' })
     }
 
     if (!validateNormalizedPhone(contactMessage.phone)) {
-      errors.push({type: 'phone', message: 'Phone is invalid'})
+      errors.push({ type: 'phone', message: 'Phone is invalid' })
     }
 
-    if(contactMessage.message.length < 10) {
-      errors.push({type: 'message', message: 'Message is too short'})
+    if (contactMessage.message.length < 10) {
+      errors.push({ type: 'message', message: 'Message is too short' })
     }
 
-    if(!props.onSubmit) {
+    if (!props.onSubmit) {
       alert('No submit handler, message: ' + JSON.stringify(contactMessage))
       return
     }
 
-    if(errors.length > 0) {
+    if (errors.length > 0) {
       setErrors(errors)
       return
     }
@@ -579,24 +579,24 @@ const Contact = (props: {title: string, subtitle: string, onSubmit: (message: Co
 
   const normalizeInput = (value: string, previousValue: string): string => {
     // return nothing if no value
-    if (!value) return value; 
-  
+    if (!value) return value;
+
     // only allows 0-9 inputs
     const currentValue = value.replace(/[^\d]/g, '');
-    const cvLength = currentValue.length; 
-  
+    const cvLength = currentValue.length;
+
     if (!previousValue || value.length > previousValue.length) {
-  
+
       // returns: "x", "xx", "xxx"
-      if (cvLength < 4) return currentValue; 
-  
+      if (cvLength < 4) return currentValue;
+
       // returns: "(xxx)", "(xxx) x", "(xxx) xx", "(xxx) xxx",
-      if (cvLength < 7) return `(${currentValue.slice(0, 3)}) ${currentValue.slice(3)}`; 
-  
+      if (cvLength < 7) return `(${currentValue.slice(0, 3)}) ${currentValue.slice(3)}`;
+
       // returns: "(xxx) xxx-", (xxx) xxx-x", "(xxx) xxx-xx", "(xxx) xxx-xxx", "(xxx) xxx-xxxx"
-      return `(${currentValue.slice(0, 3)}) ${currentValue.slice(3, 6)}-${currentValue.slice(6, 10)}`; 
+      return `(${currentValue.slice(0, 3)}) ${currentValue.slice(3, 6)}-${currentValue.slice(6, 10)}`;
     }
-    
+
     return ''
   };
 
@@ -621,7 +621,7 @@ const Contact = (props: {title: string, subtitle: string, onSubmit: (message: Co
                 <label
                   htmlFor="first-name"
                   className="block text-sm font-medium leading-6 text-gray-500"
-                  >Full name</label>
+                >Full name</label>
                 <div className="mt-2">
                   <input
                     type="text"
@@ -640,7 +640,7 @@ const Contact = (props: {title: string, subtitle: string, onSubmit: (message: Co
                 <label
                   htmlFor="email-address"
                   className="block text-sm font-medium leading-6 text-gray-500"
-                  >Email Address</label>
+                >Email Address</label>
                 <div className="mt-2">
                   <input
                     type="email"
@@ -660,7 +660,7 @@ const Contact = (props: {title: string, subtitle: string, onSubmit: (message: Co
                 <label
                   htmlFor="phone"
                   className="block text-sm font-medium leading-6 text-gray-500"
-                  >Phone Number</label>
+                >Phone Number</label>
                 <div className="mt-2">
                   <input
                     type="text"
@@ -680,7 +680,7 @@ const Contact = (props: {title: string, subtitle: string, onSubmit: (message: Co
                 <label
                   htmlFor="message"
                   className="block text-sm font-medium leading-6 text-gray-500"
-                  >Message</label>
+                >Message</label>
                 <div className="mt-2">
                   <textarea
                     rows={5}
@@ -696,7 +696,7 @@ const Contact = (props: {title: string, subtitle: string, onSubmit: (message: Co
               </div>
 
               <div className="col-span-full">
-                <button className="primary-button px-20" type="submit" onClick={e=>{
+                <button className="primary-button px-20" type="submit" onClick={e => {
                   e.preventDefault()
                   handleSubmit()
                 }}>Send</button>
@@ -713,13 +713,13 @@ const Contact = (props: {title: string, subtitle: string, onSubmit: (message: Co
 }
 
 
-const ErrorText = (props: {children?: string}) => {
+const ErrorText = (props: { children?: string }) => {
   return (
     <p className="text-red-500 text-xs italic mt-1">{props.children}</p>
   )
 }
 
-export const Footer = (props: {callToAction?: string, phoneNumber: string, address: string}) => {
+export const Footer = (props: { callToAction?: string, phoneNumber: string, address: string }) => {
   return (
     <footer className="py-8 mt-12 footer-shadow">
       <div className="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
@@ -744,18 +744,18 @@ export const Footer = (props: {callToAction?: string, phoneNumber: string, addre
               <div>
                 {props.phoneNumber}
               </div>
-              
+
             </div>
             <div className="flex items-center space-x-3 text-gray-500 mt-2">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                 <path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
               </svg>
-              
+
 
               <div>
                 {props.address}
               </div>
-              
+
             </div>
           </div>
         </div>
