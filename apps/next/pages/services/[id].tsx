@@ -7,6 +7,7 @@ import { services } from "@/data/services";
 import remarkGfm from "remark-gfm";
 import Head from "next/head";
 import { get } from "http";
+import Image from "next/image";
 
 export default function Service() {
   const router = useRouter();
@@ -88,8 +89,10 @@ const PostBody = (props: { post: PostInterface }) => {
           </h1>
 
           <div className="w-full rounded-xl overflow-hidden">
-            <img
+            <Image
               src={props.post.image}
+              height={600}
+              width={800}
               className="w-full h-full object-cover object-center"
               alt=""
             />

@@ -71,7 +71,9 @@ const Services = (props: {
             </div>
 
             <div className="absolute -left-8 top-1/2 -translate-y-1/2 z-0">
-              <img
+              <Image
+                height={20}
+                width={20}
                 src="/icons/setting.png"
                 className="w-16 object-contain"
                 alt=""
@@ -97,7 +99,9 @@ const Services = (props: {
             </div>
 
             <div className="absolute -top-8 right-16 z-0">
-              <img
+              <Image
+                height={20}
+                width={20}
                 src="/icons/setting.png"
                 className="w-16 object-contain"
                 alt=""
@@ -123,7 +127,9 @@ const Services = (props: {
             </div>
 
             <div className="absolute -right-10 bottom-8 z-0">
-              <img
+              <Image
+                height={50}
+                width={50}
                 src="/icons/setting-2.png"
                 className="w-20 object-contain"
                 alt=""
@@ -149,7 +155,9 @@ const Services = (props: {
             </div>
 
             <div className="absolute -right-8 -bottom-20 z-0">
-              <img
+              <Image
+                height={50}
+                width={50}
                 src="/icons/setting-2.png"
                 className="w-28 object-contain"
                 alt=""
@@ -157,7 +165,9 @@ const Services = (props: {
             </div>
 
             <div className="absolute -right-16 -bottom-2 z-0">
-              <img
+              <Image
+                height={50}
+                width={50}
                 src="/icons/setting.png"
                 className="w-20 object-contain"
                 alt=""
@@ -200,7 +210,9 @@ const Portfolio = (props: any) => {
         <div className="grid lg:grid-cols-2 gap-6">
           <div className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl overflow-hidden h-full z-10">
             <div className="aspect-video">
-              <img
+              <Image
+                height={50}
+                width={50}
                 src="/portfolio/portfolio-1.png"
                 className="w-full h-full object-cover object-center"
                 alt=""
@@ -223,7 +235,9 @@ const Portfolio = (props: any) => {
               className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl lg:flex-1 sm:flex sm:items-center border border-gray-100 overflow-hidden z-20"
             >
               <div className="sm:w-1/2 h-64 sm:h-full flex-shrink-0">
-                <img
+                <Image
+                  height={50}
+                  width={50}
                   src="/portfolio/portfolio-2.png"
                   className="w-full h-full object-center object-cover"
                   alt=""
@@ -243,7 +257,9 @@ const Portfolio = (props: any) => {
               className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl lg:flex-1 sm:flex sm:items-center border border-gray-100 overflow-hidden z-30"
             >
               <div className="sm:w-1/2 h-64 sm:h-full flex-shrink-0">
-                <img
+                <Image
+                  height={50}
+                  width={50}
                   src="/portfolio/portfolio-3.png"
                   className="w-full h-full object-center object-cover"
                   alt=""
@@ -265,7 +281,9 @@ const Portfolio = (props: any) => {
         <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl overflow-hidden h-full z-40">
             <div className="aspect-video">
-              <img
+              <Image
+                height={50}
+                width={50}
                 src="/portfolio/portfolio-4.png"
                 className="w-full h-full object-cover object-center"
                 alt=""
@@ -281,7 +299,9 @@ const Portfolio = (props: any) => {
           </div>
           <div className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl overflow-hidden h-full z-50">
             <div className="aspect-video">
-              <img
+              <Image
+                height={50}
+                width={50}
                 src="/portfolio/portfolio-5.png"
                 className="w-full h-full object-cover object-center"
                 alt=""
@@ -297,7 +317,9 @@ const Portfolio = (props: any) => {
           </div>
           <div className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl overflow-hidden h-full z-60">
             <div className="aspect-video">
-              <img
+              <Image
+                height={50}
+                width={50}
                 src="/portfolio/portfolio-6.png"
                 className="w-full h-full object-cover object-center"
                 alt=""
@@ -322,7 +344,9 @@ const Header = (props: any) => {
   return (
     <header className="relative flex flex-col min-h-screen h-full">
       <div className="absolute inset-0 w-full h-full z-0">
-        <img
+        <Image
+          height={500}
+          width={500}
           src="/backgroung.png"
           className="w-full h-full object-cover object-left"
           alt=""
@@ -351,7 +375,9 @@ const Header = (props: any) => {
 
         <div className="w-full mt-6 md:mt-0 flex flex-col items-center gap-8 md:pl-6">
           <div className="w-full bg-white/80 backdrop-blur-sm rounded-lg shadow-lg p-6 md:ml-6 max-w-lg">
-            <img
+            <Image
+              height={200}
+              width={300}
               src="/hero-image.png"
               className="w-full h-auto object-contain max-h-[300px] mb-6"
               alt="Hero illustration"
@@ -405,15 +431,19 @@ export const NavBar = (props: { theme: 'dark' | 'light' }) => {
         <div className="relative flex h-20 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center">
             <a href="/" className="flex flex-shrink-0 items-center">
-              <img
+              <Image
+                height={100}
+                width={100}
                 className="block h-8 w-auto lg:hidden"
                 src="/logo.png"
-                alt="Your Company"
+                alt="Cloudpresser LLC logo"
               />
-              <img
+              <Image
+                height={100}
+                width={100}
                 className="hidden h-14 w-auto lg:block"
                 src="/logo.png"
-                alt="Your Company"
+                alt="Cloudpresser LLC logo"
               />
             </a>
           </div>
@@ -737,7 +767,11 @@ export const Contact = (props: { title: string, subtitle: string, onSubmit: (mes
             </form>
           </div>
           <div className="h-full flex-shrink-0 flex flex-col justify-end">
-            <img src="/contact-image.png" className="w-full" alt="" />
+
+            <Image
+              height={200}
+              width={300}
+              src="/contact-image.png" className="w-full" alt="" />
           </div>
         </div>
       </div>
@@ -758,7 +792,9 @@ export const Footer = (props: { callToAction?: string, phoneNumber: string, addr
       <div className="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
         <div className="flex flex-col md:flex-row space-y-5 md:space-y-0 md:space-x-5 items-center justify-between">
           <a href="/" className="flex flex-shrink-0 items-center">
-            <img
+            <Image
+              height={100}
+              width={100}
               className="h-14 w-auto"
               src="/logo.png"
               alt="Your Company"
