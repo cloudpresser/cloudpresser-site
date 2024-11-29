@@ -349,12 +349,45 @@ const Header = (props: any) => {
           </div>
         </div>
 
-        <div className="mt-6 md:mt-0">
-          <img
-            src="/hero-image.png"
-            className="md:h-[510px] max-h-[550px] object-contain"
-            alt=""
-          />
+        <div className="w-full mt-6 md:mt-0 flex flex-col items-center gap-8 pl-6">
+          <div className="w-full bg-white/80 backdrop-blur-sm rounded-lg shadow-lg p-6 ml-6">
+            <img
+              src="/hero-image.png"
+              className="w-full h-auto object-contain max-h-[300px] mb-6"
+              alt="Hero illustration"
+            />
+            <h3 className="text-xl font-semibold mb-4 text-primary-400">Get Started Today</h3>
+            <form className="space-y-4">
+              <div>
+                <label htmlFor="hero-name" className="block text-sm font-medium text-gray-700">Name</label>
+                <input
+                  type="text"
+                  id="hero-name"
+                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-primary-500 focus:outline-none focus:ring-primary-500 sm:text-sm"
+                  placeholder="Enter your name"
+                />
+              </div>
+              <div>
+                <label htmlFor="hero-email" className="block text-sm font-medium text-gray-700">Email</label>
+                <input
+                  type="email"
+                  id="hero-email"
+                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-primary-500 focus:outline-none focus:ring-primary-500 sm:text-sm"
+                  placeholder="you@example.com"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full primary-button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  alert('Form submission functionality to be implemented');
+                }}
+              >
+                Start Your Journey
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </header>
