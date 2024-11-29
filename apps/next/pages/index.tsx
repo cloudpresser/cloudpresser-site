@@ -536,7 +536,7 @@ import { flags } from '@/util/flags'
 import { services } from '@/data/services'
 import Head from 'next/head'
 
-const Contact = (props: { title: string, subtitle: string, onSubmit: (message: ContactMessage) => void }) => {
+export const Contact = (props: { title: string, subtitle: string, onSubmit: (message: ContactMessage) => void }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
