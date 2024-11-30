@@ -385,7 +385,7 @@ const Header = (props: any) => {
               className="w-full h-auto object-contain max-h-[300px] mb-6"
               alt="Hero illustration"
             />
-            <h3 className="text-xl font-semibold mb-4 text-primary-400">Get Started Today</h3>
+            <h1 className="text-xl font-semibold mb-4 text-primary-400">Get Started Today</h1>
             <form className="space-y-4">
               <div>
                 <label htmlFor="hero-name" className="block text-sm font-medium text-gray-700">Name</label>
