@@ -376,9 +376,9 @@ const Header = (props: any) => {
         <div className="w-full mt-6 md:mt-0 flex flex-col items-center gap-8 md:pl-6">
           <div className="w-full bg-white/80 backdrop-blur-sm rounded-lg shadow-lg p-6 md:ml-6 max-w-lg">
             <Image
-              height={200}
               width={300}
               src="/hero-image.png"
+              sizes="(max-width: 768px) 90vw, 33vw"
               priority
               className="w-full h-auto object-contain max-h-[300px] mb-6"
               alt="Hero illustration"
