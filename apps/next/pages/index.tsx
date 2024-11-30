@@ -377,6 +377,7 @@ const Header = (props: any) => {
           <div className="w-full bg-white/80 backdrop-blur-sm rounded-lg shadow-lg p-6 md:ml-6 max-w-lg">
             <Image
               width={300}
+              height={200}
               src="/hero-image.png"
               sizes="(max-width: 768px) 90vw, 33vw"
               quality={60}
