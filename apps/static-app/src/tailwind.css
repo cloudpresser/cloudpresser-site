@@ -14,7 +14,7 @@
   }
 
   .secondary-button {
-    @apply inline-block text-sm text-primary-400 font-semibold px-4 py-2 sm:px-8 sm:py-3 rounded-full bg-white border border-primary-400 transition hover:text-white hover:bg-primary-400;
+    @apply inline-block text-sm text-primary-400 font-semibold px-4 py-2 sm:px-8 sm:py-3 rounded-full bg-white border border-primary-400 transition hover:text-primary-400 hover:bg-white;
   }
 
   .primary-input {
