@@ -379,6 +379,7 @@ const Header = (props: any) => {
               width={300}
               src="/hero-image.png"
               sizes="(max-width: 768px) 90vw, 33vw"
+              quality={60}
               priority
               className="w-full h-auto object-contain max-h-[300px] mb-6"
               alt="Hero illustration"

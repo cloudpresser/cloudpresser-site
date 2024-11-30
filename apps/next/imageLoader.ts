@@ -13,6 +13,7 @@ export default function cloudflareLoader({
   const params = [`width=${width}`, 'format=auto'];
   if (quality) {
     params.push(`quality=${quality}`);
+    params.push('shapen=1');
   }
   const paramsString = params.join(",");
   return `/cdn-cgi/image/${paramsString}/${normalizeSrc(src)}`;
