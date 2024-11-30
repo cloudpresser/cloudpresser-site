@@ -435,15 +435,15 @@ export const NavBar = (props: { theme: 'dark' | 'light' }) => {
           <div className="absolute inset-y-0 left-0 flex items-center">
             <a href="/" className="flex flex-shrink-0 items-center">
               <Image
-                height={131}
-                width={66}
+                height={66}
+                width={131}
                 className="block h-8 w-auto lg:hidden"
                 src="/logo.png"
                 alt="Cloudpresser LLC logo"
               />
               <Image
-                height={131}
-                width={66}
+                height={66}
+                width={131}
                 className="hidden h-14 w-auto lg:block"
                 src="/logo.png"
                 alt="Cloudpresser LLC logo"
