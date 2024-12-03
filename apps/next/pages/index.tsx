@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>CloudPresser Universal Apps & ML</title>
+        <title>{content.metadata.seo.homePageTitle}</title>
       </Head>
       <Header />
       {

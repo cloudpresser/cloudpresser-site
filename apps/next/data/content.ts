@@ -1,6 +1,31 @@
 import { PostInterface } from "@/pages/services/[id]";
 
 export const content = {
+  metadata: {
+    company: {
+      name: "CloudPresser LLC",
+      tagline: "Intelligent Apps on All Platforms",
+      founded: "2017",
+      location: "Raleigh, NC",
+    },
+    contact: {
+      email: "support@cloudpresser.com",
+      phone: "(919) 355-6557",
+      address: "1516 Beacon Valley Drive, Raleigh, NC 27604",
+      hours: "Monday - Friday: 9:00 AM - 6:00 PM EST",
+    },
+    social: {
+      twitter: "https://twitter.com/cloudpresser",
+      linkedin: "https://linkedin.com/company/cloudpresser",
+      github: "https://github.com/cloudpresser",
+    },
+    seo: {
+      title: "CloudPresser - React Native Development Services",
+      homePageTitle: "CloudPresser | Building Tomorrow's Digital Solutions",
+      description: "Professional React Native development services including custom apps, data analysis, and machine learning solutions.",
+      keywords: ["React Native", "Mobile Development", "Web Development", "Machine Learning", "Data Analysis"],
+    },
+  },
   header: {
     title: 'React Native Development as a Service',
     description: ' At CloudPresser, we offer a full range of React Native development services to help your business grow. From custom web and mobile apps to data analysis and machine learning, we have the expertise to bring your ideas to life.',
@@ -16,7 +41,7 @@ export const content = {
     },
     portfolio: {
       headerTitle: 'Portfolio',
-      title: 'Our Portfolio', 
+      title: 'Our Portfolio',
       subtitle: 'Explore our successful projects and see how we\'ve helped businesses achieve their goals'
     },
     contact: {
@@ -27,14 +52,14 @@ export const content = {
   },
   services: [
     {
-        id: "mobile-apps",
-        title: "Custom Web and Mobile Apps",
-        description: "We design and build custom web and mobile applications tailored to your business needs.",
-        image: "/blog/blog-1.png",
-        content: `## Introduction
+      id: "mobile-apps",
+      title: "Custom Web and Mobile Apps",
+      description: "We design and build custom web and mobile applications tailored to your business needs.",
+      image: "/blog/blog-1.png",
+      content: `## Introduction
 
 In today's digital world, having a strong online presence is crucial for businesses. Our team specializes in developing custom web and mobile applications that are specifically designed to meet your unique business requirements. Whether you need a responsive website, a feature-rich web application, or a native mobile app, we have the expertise to bring your ideas to life.
- 
+
 ## User-Centered Design
 
 We follow a user-centered design approach to ensure that the applications we build are intuitive, visually appealing, and provide a seamless user experience. Our development process is agile, allowing us to adapt to changing requirements and deliver high-quality solutions within the specified timeframes.
@@ -54,11 +79,11 @@ By leveraging the latest technologies and frameworks, we can create scalable and
 Partner with us to turn your vision into reality and enhance your business with custom web and mobile applications.`
     },
     {
-        id: "machine-learning",
-        title: "Data Analysis and Machine Learning",
-        description: "Leverage the power of data to drive business insights and make better decisions with our data analysis and machine learning services.",
-        image: "/blog/blog-2.png",
-        content: `## Introduction
+      id: "machine-learning",
+      title: "Data Analysis and Machine Learning",
+      description: "Leverage the power of data to drive business insights and make better decisions with our data analysis and machine learning services.",
+      image: "/blog/blog-2.png",
+      content: `## Introduction
 
 Data is a valuable asset for any organization, and by harnessing its power, you can gain valuable insights and make data-driven decisions. Our data analysis and machine learning services are designed to help businesses unlock the full potential of their data.
 
@@ -82,11 +107,11 @@ Our team of experienced data scientists and analysts will analyze your data usin
 Contact us today to discuss how we can help you leverage the power of data for better business insights and decision-making.`
     },
     {
-        id: "scalable-solutions",
-        title: "Scalable Solutions: Flexible and Tailored Software Services",
-        description: "Customize your software services with our scalable solutions that adapt to your changing needs.",
-        image: "/blog/blog-1.png",
-        content: `## Introduction
+      id: "scalable-solutions",
+      title: "Scalable Solutions: Flexible and Tailored Software Services",
+      description: "Customize your software services with our scalable solutions that adapt to your changing needs.",
+      image: "/blog/blog-1.png",
+      content: `## Introduction
 
 At CloudPresser, we understand that every client has unique software service requirements. That's why we offer scalable solutions that can be tailored to meet your specific needs. Whether you need to augment your team with skilled resources or seek guidance on distributed development, our flexible approach ensures we can address your evolving demands effectively.
 
@@ -109,11 +134,11 @@ Partner with us to access scalable solutions that adapt to your changing softwar
 Contact us today to discuss how our scalable solutions can benefit your organization.`
     },
     {
-        id: "consulting",
-        title: "Consulting and Strategy",
-        description: "Our team of experts can help you develop a software strategy and plan that aligns with your business goals.",
-        image: "/blog/blog-4.png",
-        content: `## Introduction
+      id: "consulting",
+      title: "Consulting and Strategy",
+      description: "Our team of experts can help you develop a software strategy and plan that aligns with your business goals.",
+      image: "/blog/blog-4.png",
+      content: `## Introduction
 
 Embarking on a software project without a clear strategy can lead to wasted resources and unsatisfactory outcomes. Our consulting and strategy services are designed to guide you through the entire software development lifecycle, from concept to implementation.
 
@@ -135,11 +160,11 @@ Throughout the development process, we will provide regular updates and collabor
 Partner with us for your software consulting and strategy needs, and let our expertise guide you towards a successful software implementation.`
     },
     {
-        id: "integration",
-        title: "Software Integration and Maintenance",
-        description: "We can integrate your existing software systems and provide ongoing maintenance and support to ensure smooth operation.",
-        image: "/blog/blog-3.png",
-        content: `## Introduction
+      id: "integration",
+      title: "Software Integration and Maintenance",
+      description: "We can integrate your existing software systems and provide ongoing maintenance and support to ensure smooth operation.",
+      image: "/blog/blog-3.png",
+      content: `## Introduction
 
 As your business grows, you may find yourself using multiple software systems to manage different aspects of your operations. However, these systems may not always communicate effectively with each other, leading to inefficiencies and data inconsistencies.
 
@@ -162,11 +187,11 @@ With our software integration and maintenance services, you can:
 Let us take care of your software systems so that you can focus on your core business activities.`
     },
     {
-        id: "end-to-end-solutions",
-        title: "Comprehensive Project Delivery: End-to-End Software Solutions",
-        description: "From concept to implementation and support, we provide comprehensive solutions for your software projects.",
-        image: "/blog/blog-2.png",
-        content: `## Introduction
+      id: "end-to-end-solutions",
+      title: "Comprehensive Project Delivery: End-to-End Software Solutions",
+      description: "From concept to implementation and support, we provide comprehensive solutions for your software projects.",
+      image: "/blog/blog-2.png",
+      content: `## Introduction
 
 At CloudPresser, we offer comprehensive project delivery, taking ownership of your software projects from start to finish. Our end-to-end solutions encompass a wide range of services, including custom development, software integration, maintenance, and more. With our expertise and streamlined processes, we ensure a seamless experience throughout your software development journey.
 
@@ -188,7 +213,7 @@ Partnering with us means having access to a comprehensive suite of software serv
 
 ## Get Started
 
-Embark on your software journey with our comprehensive project delivery solutions. Let us take care of the entire development lifecycle, while you focus on your core business activities. Contact us today to discuss how our end-to-end software solutions can accelerate your success.` 
+Embark on your software journey with our comprehensive project delivery solutions. Let us take care of the entire development lifecycle, while you focus on your core business activities. Contact us today to discuss how our end-to-end software solutions can accelerate your success.`
     }
   ] as PostInterface[]
 };
