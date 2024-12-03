@@ -360,16 +360,16 @@ const Header = (props: any) => {
           <h1
             className="text-primary-400 text-2xl sm:text-3xl xl:text-4xl font-semibold text-center md:text-left"
           >
-            React Native Development as a Service
+            {header.title}
           </h1>
           <p className="text-sm mt-6 text-gray-800 text-center md:text-left">
-            At CloudPresser, we offer a full range of React Native development services to help your business grow. From custom web and mobile apps to data analysis and machine learning, we have the expertise to bring your ideas to life.
+            {header.description}
           </p>
           <div
             className="mt-4 flex flex-row md:flex-col md:space-y-3 space-x-3 md:space-x-0 justify-center md:justify-start md:items-start"
           >
             {flags.calendar && <a href="#" className="primary-button truncate">Schedule Now</a>}
-            {flags.contact && <a href="#contact" className="bg-primary-400 text-gray-200 secondary-button truncate transition hover:text-primary-400 hover:bg-gray-200">Contact Us</a>}
+            {flags.contact && <a href="#contact" className="bg-primary-400 text-gray-200 secondary-button truncate transition hover:text-primary-400 hover:bg-gray-200">{header.buttonText}</a>}
           </div>
         </div>
 
@@ -385,7 +385,7 @@ const Header = (props: any) => {
               className="w-full h-auto object-contain max-h-[300px] mb-6"
               alt="Hero illustration"
             />
-            <h1 className="text-xl font-semibold mb-4 text-primary-400">Get Started Today</h1>
+            <h1 className="text-xl font-semibold mb-4 text-primary-400">{header.getStartedText}</h1>
             <form className="space-y-4">
               <div>
                 <label htmlFor="hero-name" className="block text-sm font-medium text-gray-700">Name</label>
@@ -413,7 +413,7 @@ const Header = (props: any) => {
                   alert('Form submission functionality to be implemented');
                 }}
               >
-                Start Your Journey
+                {header.getStartedButtonText}
               </button>
             </form>
           </div>
@@ -567,6 +567,7 @@ interface ContactMessage {
 import { useState } from 'react'
 import { flags } from '@/util/flags'
 import { services } from '@/data/services'
+import { header } from '@/data/header'
 import Head from 'next/head'
 
 export const Contact = (props: { title: string, subtitle: string, onSubmit: (message: ContactMessage) => void }) => {
@@ -789,7 +790,7 @@ const ErrorText = (props: { children?: string }) => {
   )
 }
 
-export const Footer = (props: { callToAction?: string, phoneNumber: string, address: string, email: string }) => {
+export const Footer = (props: { callToAction?: string, phoneNumber: string, address: string }) => {
   return (
     <footer className="py-8 mt-12 footer-shadow">
       <div className="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
