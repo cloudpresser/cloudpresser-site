@@ -19,7 +19,6 @@ export default function Home() {
       {flags.portfolio && <Portfolio />}
       {flags.contact && <Contact
         title={content.sections.contact.title}
-        subtitle={content.sections.contact.subtitle}
         onSubmit={message => alert(JSON.stringify(message))}
       />}
     </>
@@ -569,7 +568,7 @@ import { flags } from '@/util/flags'
 import { content } from '@/data/content'
 import Head from 'next/head'
 
-export const Contact = (props: { title: string, subtitle: string, onSubmit: (message: ContactMessage) => void }) => {
+export const Contact = (props: { title: string, onSubmit: (message: ContactMessage) => void }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
@@ -675,9 +674,17 @@ export const Contact = (props: { title: string, subtitle: string, onSubmit: (mes
           >
             {props.title}
           </h2>
-          <p className="text-center text-gray-900 text-base">
-            {props.subtitle}
-          </p>
+          <div className="text-center text-gray-900">
+            <div className="font-medium">
+              <p className="mb-2">
+                <span className="font-semibold">Email:</span> {content.sections.contact.subtitle.contactInfo.email}
+              </p>
+              <p>
+                <span className="font-semibold">Phone:</span> {content.sections.contact.subtitle.contactInfo.phone}
+              </p>
+            </div>
+            <p className="text-base mt-4">{content.sections.contact.subtitle.outro}</p>
+          </div>
         </div>
 
         <div className="mt-2 grid md:grid-cols-2 gap-5 md:gap-0">

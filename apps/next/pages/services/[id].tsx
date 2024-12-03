@@ -3,7 +3,7 @@ import { Contact, Footer, NavBar } from "..";
 import { flags } from "@/util/flags";
 import React from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import { services } from "@/data/services";
+import { content } from "@/data/content";
 import remarkGfm from "remark-gfm";
 import Head from "next/head";
 import { get } from "http";
@@ -12,7 +12,7 @@ import Image from "next/image";
 export default function Service() {
   const router = useRouter();
   const { id } = router.query;
-  const service = services.find((service) => service.id === id,) ?? services[0]
+  const service = content.services.find((service) => service.id === id,) ?? content.services[0]
 
   return (
     <>
@@ -24,8 +24,7 @@ export default function Service() {
       </header>
       <PostBody post={service} />
       {flags.contact && <Contact
-        title='Contact Us'
-        subtitle='Ultrices volutpat et adipiscing eget est risus. Sed massa elementum nec, egestas amet tellus dictumst enim facilisis.'
+        title={content.sections.contact.title}
         onSubmit={message => alert(JSON.stringify(message))}
       />}
     </>
@@ -33,7 +32,7 @@ export default function Service() {
 }
 
 export const getStaticProps = ({ params }: any) => {
-  const service = services.find((service) => service.id === params.id,) ?? services[0]
+  const service = content.services.find((service) => service.id === params.id,) ?? content.services[0]
   return {
     props: {
       service,
@@ -44,7 +43,7 @@ export const getStaticProps = ({ params }: any) => {
 export const getStaticPaths = () => {
   return (
     {
-      paths: services.map((service) => ({
+      paths: content.services.map((service) => ({
         params: {
           id: service.id,
         },

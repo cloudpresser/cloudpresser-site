@@ -47,7 +47,14 @@ export const content = {
     contact: {
       headerTitle: 'Contact',
       title: 'Contact Us',
-      subtitle: 'Get in touch with us to discuss your project requirements and how we can help you succeed'
+      subtitle: {
+        intro: "Ready to discuss your project?",
+        contactInfo: {
+          email: "support@cloudpresser.com",
+          phone: "(919) 355-6557"
+        },
+        outro: "Let us help you bring your vision to life."
+      }
     }
   },
   services: [
