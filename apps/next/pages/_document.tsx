@@ -18,6 +18,7 @@ export default function Document() {
         callToAction="Let's work together"
         phoneNumber='(919) 355-6557'
         address='Raleigh, NC'
+        email='support@cloudpresser.com'
       />
     </Html>
   )
