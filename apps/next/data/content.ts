@@ -1,7 +1,31 @@
 import { PostInterface } from "@/pages/services/[id]";
 
-
-export const services: PostInterface[] =  [
+export const content = {
+  header: {
+    title: 'React Native Development as a Service',
+    description: ' At CloudPresser, we offer a full range of React Native development services to help your business grow. From custom web and mobile apps to data analysis and machine learning, we have the expertise to bring your ideas to life.',
+    buttonText: 'Contact Us',
+    getStartedText: 'Get Started Today',
+    getStartedButtonText: 'Start Your Journey'
+  },
+  sections: {
+    services: {
+      headerTitle: 'Services',
+      title: 'Our Services',
+      subtitle: 'Our team of experienced React Native developers can help you with the following services:'
+    },
+    portfolio: {
+      headerTitle: 'Portfolio',
+      title: 'Our Portfolio', 
+      subtitle: 'Explore our successful projects and see how we\'ve helped businesses achieve their goals'
+    },
+    contact: {
+      headerTitle: 'Contact',
+      title: 'Contact Us',
+      subtitle: 'Get in touch with us to discuss your project requirements and how we can help you succeed'
+    }
+  },
+  services: [
     {
         id: "mobile-apps",
         title: "Custom Web and Mobile Apps",
@@ -166,4 +190,5 @@ Partnering with us means having access to a comprehensive suite of software serv
 
 Embark on your software journey with our comprehensive project delivery solutions. Let us take care of the entire development lifecycle, while you focus on your core business activities. Contact us today to discuss how our end-to-end software solutions can accelerate your success.` 
     }
-];
+  ] as PostInterface[]
+};

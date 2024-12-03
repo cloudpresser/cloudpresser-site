@@ -12,14 +12,14 @@ export default function Home() {
       <Header />
       {
         flags.services && (<Services
-          title='Our Services'
-          subtitle='Our team of experienced React Native developers can help you with the following services:'
-          serviceList={services as any}
+          title={content.sections.services.title}
+          subtitle={content.sections.services.subtitle}
+          serviceList={content.services as any}
         />)}
       {flags.portfolio && <Portfolio />}
       {flags.contact && <Contact
-        title='Contact Us'
-        subtitle='Ultrices volutpat et adipiscing eget est risus. Sed massa elementum nec, egestas amet tellus dictumst enim facilisis.'
+        title={content.sections.contact.title}
+        subtitle={content.sections.contact.subtitle}
         onSubmit={message => alert(JSON.stringify(message))}
       />}
     </>
@@ -360,16 +360,16 @@ const Header = (props: any) => {
           <h1
             className="text-primary-400 text-2xl sm:text-3xl xl:text-4xl font-semibold text-center md:text-left"
           >
-            {header.title}
+            {content.header.title}
           </h1>
           <p className="text-sm mt-6 text-gray-800 text-center md:text-left">
-            {header.description}
+            {content.header.description}
           </p>
           <div
             className="mt-4 flex flex-row md:flex-col md:space-y-3 space-x-3 md:space-x-0 justify-center md:justify-start md:items-start"
           >
             {flags.calendar && <a href="#" className="primary-button truncate">Schedule Now</a>}
-            {flags.contact && <a href="#contact" className="bg-primary-400 text-gray-200 secondary-button truncate transition hover:text-primary-400 hover:bg-gray-200">{header.buttonText}</a>}
+            {flags.contact && <a href="#contact" className="bg-primary-400 text-gray-200 secondary-button truncate transition hover:text-primary-400 hover:bg-gray-200">{content.header.buttonText}</a>}
           </div>
         </div>
 
@@ -385,7 +385,7 @@ const Header = (props: any) => {
               className="w-full h-auto object-contain max-h-[300px] mb-6"
               alt="Hero illustration"
             />
-            <h1 className="text-xl font-semibold mb-4 text-primary-400">{header.getStartedText}</h1>
+            <h1 className="text-xl font-semibold mb-4 text-primary-400">{content.header.getStartedText}</h1>
             <form className="space-y-4">
               <div>
                 <label htmlFor="hero-name" className="block text-sm font-medium text-gray-700">Name</label>
@@ -413,7 +413,7 @@ const Header = (props: any) => {
                   alert('Form submission functionality to be implemented');
                 }}
               >
-                {header.getStartedButtonText}
+                {content.header.getStartedButtonText}
               </button>
             </form>
           </div>
@@ -566,8 +566,7 @@ interface ContactMessage {
 }
 import { useState } from 'react'
 import { flags } from '@/util/flags'
-import { services } from '@/data/services'
-import { header } from '@/data/header'
+import { content } from '@/data/content'
 import Head from 'next/head'
 
 export const Contact = (props: { title: string, subtitle: string, onSubmit: (message: ContactMessage) => void }) => {
@@ -790,7 +789,7 @@ const ErrorText = (props: { children?: string }) => {
   )
 }
 
-export const Footer = (props: { callToAction?: string, phoneNumber: string, address: string }) => {
+export const Footer = (props: { callToAction?: string, phoneNumber: string, address: string, email: string }) => {
   return (
     <footer className="py-8 mt-12 footer-shadow">
       <div className="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
