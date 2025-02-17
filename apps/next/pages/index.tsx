@@ -675,6 +675,7 @@ import { flags } from '@/util/flags'
 import { content } from '@/data/content'
 import Head from 'next/head'
 
+type ValidationError = { type: 'phone' | 'email' | 'name' | 'message', message: string }
 export const Contact = (props: { title: string, onSubmit: (message: ContactMessage) => void }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -685,7 +686,6 @@ export const Contact = (props: { title: string, onSubmit: (message: ContactMessa
   const [extraField, setExtraField] = useState('');
   const [showSuccessToast, setShowSuccessToast] = useState(false)
 
-  type ValidationError = { type: 'phone' | 'email' | 'name' | 'message', message: string }
   const [errors, setErrors] = useState<ValidationError[]>([])
 
   const handleSubmit = async () => {
