@@ -4,12 +4,41 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const onSubmit = async (message: ContactMessage) => {
+    try {
+      // Build payload matching your Worker’s expected field names
+      const payload = {
+        name: message.name,
+        email_address: message.email,
+        phone: message.phone,            // optional
+        message: message.message,          // optional
+        extra_field: message.extraField,  // honeypot
+        // turnstileToken,   // optional if you use Turnstile
+      };
+
+      const response = await fetch('https://form-handler.luiz-d96.workers.dev/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || 'Submission failed');
+      }
+
+      // Success
+      // setSuccess('Your form was submitted successfully!');
+    } catch (error) {
+      alert('Failed to submit form: ' + error);
+    }
+  }
   return (
     <>
       <Head>
         <title>{content.metadata.seo.homePageTitle}</title>
       </Head>
-      <Header />
+      <Header onSubmit={onSubmit} />
       {
         flags.services && (<Services
           title={content.sections.services.title}
@@ -19,7 +48,7 @@ export default function Home() {
       {flags.portfolio && <Portfolio />}
       {flags.contact && <Contact
         title={content.sections.contact.title}
-        onSubmit={message => alert(JSON.stringify(message))}
+        onSubmit={onSubmit}
       />}
     </>
   )
@@ -46,6 +75,7 @@ const Services = (props: {
     id: string
   }]
 }) => {
+  const [showSuccessToast, setShowSuccessToast] = useState(false)
   return (
     <section className="bg-white py-12 lg:py-20 overflow-hidden max-w-full">
       <div className="mx-auto max-w-screen-2xl px-5 sm:px-10 xl:px-16">
@@ -186,6 +216,12 @@ const Services = (props: {
           </a>
         </div>
       </div>
+      {showSuccessToast && (
+        <Toast
+          message="Message sent successfully! We'll be in contact soon."
+          onClose={() => setShowSuccessToast(false)}
+        />
+      )}
     </section>
   )
 }
@@ -338,7 +374,58 @@ const Portfolio = (props: any) => {
   )
 }
 
-const Header = (props: any) => {
+const Header = (props: { onSubmit: (message: ContactMessage) => void }) => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [extraField, setExtraField] = useState('');
+  const [errors, setErrors] = useState<ValidationError[]>([])
+  const [showSuccessToast, setShowSuccessToast] = useState(false)
+
+  const validateEmailRegex = (value: string): boolean => {
+    return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)
+  }
+
+  const handleHeaderSubmit = async () => {
+    setErrors([])
+
+    const contactMessage: ContactMessage = {
+      name,
+      email,
+      phone: '',
+      message: '',
+      extraField
+    }
+
+    let errors: ValidationError[] = []
+
+    if (contactMessage.name === '') {
+      errors.push({ type: 'name', message: 'Name is required' })
+    }
+
+    if (contactMessage.email === '') {
+      errors.push({ type: 'email', message: 'Email is required' })
+    }
+
+    if (!validateEmailRegex(email)) {
+      errors.push({ type: 'email', message: 'Email is invalid' })
+    }
+
+    if (errors.length > 0) {
+      setErrors(errors)
+      return
+    }
+
+    // Submit the message using the same handler as Contact form
+    try {
+      await props.onSubmit(contactMessage)
+      setShowSuccessToast(true)
+      setName('')
+      setEmail('')
+      setExtraField('')
+    } catch (error) {
+      console.error('Failed to submit form:', error)
+    }
+  }
 
   return (
     <header className="relative flex flex-col min-h-screen h-full">
@@ -391,25 +478,38 @@ const Header = (props: any) => {
                 <input
                   type="text"
                   id="hero-name"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
                   className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-primary-500 focus:outline-none focus:ring-primary-500 sm:text-sm"
                   placeholder="Enter your name"
                 />
+                {errors.find(e => e.type === 'name') && <ErrorText>{errors.find(e => e.type === 'name')?.message}</ErrorText>}
               </div>
               <div>
                 <label htmlFor="hero-email" className="block text-sm font-medium text-gray-700">Email</label>
                 <input
                   type="email"
                   id="hero-email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
                   className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-primary-500 focus:outline-none focus:ring-primary-500 sm:text-sm"
                   placeholder="you@example.com"
                 />
+                {errors.find(e => e.type === 'email') && <ErrorText>{errors.find(e => e.type === 'email')?.message}</ErrorText>}
               </div>
+              <input
+                type="text"
+                id="extra_message"
+                value={extraField}
+                onChange={(e) => setExtraField(e.target.value)}
+                style={{ display: 'none' }}
+              />
               <button
                 type="submit"
                 className="w-full primary-button"
                 onClick={(e) => {
                   e.preventDefault();
-                  alert('Form submission functionality to be implemented');
+                  handleHeaderSubmit();
                 }}
               >
                 {content.header.getStartedButtonText}
@@ -418,6 +518,12 @@ const Header = (props: any) => {
           </div>
         </div>
       </div>
+      {showSuccessToast && (
+        <Toast
+          message="Message sent successfully!"
+          onClose={() => setShowSuccessToast(false)}
+        />
+      )}
     </header>
   )
 }
@@ -561,9 +667,10 @@ interface ContactMessage {
   name: string
   email: string
   phone: string
-  message: string
+  message: string,
+  extraField: string
 }
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { flags } from '@/util/flags'
 import { content } from '@/data/content'
 import Head from 'next/head'
@@ -574,17 +681,22 @@ export const Contact = (props: { title: string, onSubmit: (message: ContactMessa
   const [phone, setPhone] = useState('')
   const [message, setMessage] = useState('')
 
+  // Honeypot field (usually hidden in the DOM)
+  const [extraField, setExtraField] = useState('');
+  const [showSuccessToast, setShowSuccessToast] = useState(false)
+
   type ValidationError = { type: 'phone' | 'email' | 'name' | 'message', message: string }
   const [errors, setErrors] = useState<ValidationError[]>([])
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setErrors([])
 
     const contactMessage: ContactMessage = {
       name,
       email,
       phone,
-      message
+      message,
+      extraField
     }
 
     /**
@@ -630,7 +742,17 @@ export const Contact = (props: { title: string, onSubmit: (message: ContactMessa
       return
     }
     // Submit the message
-    props.onSubmit(contactMessage)
+    try {
+      await props.onSubmit(contactMessage)
+      setShowSuccessToast(true)
+      setName('')
+      setEmail('')
+      setPhone('')
+      setMessage('')
+      setExtraField('')
+    } catch (error) {
+      console.error('Failed to submit form:', error)
+    }
   }
 
   const validateEmailRegex = (value: string): boolean => {
@@ -767,6 +889,13 @@ export const Contact = (props: { title: string, onSubmit: (message: ContactMessa
                   {errors.find(e => e.type === 'message') && <ErrorText>{errors.find(e => e.type === 'message')?.message}</ErrorText>}
                 </div>
               </div>
+              <input
+                type="text"
+                id="extra_message"
+                value={extraField}
+                style={{ display: 'none' }}
+                onChange={(e) => setExtraField(e.target.value)}
+              />
 
               <div className="col-span-full">
                 <button className="primary-button px-20" type="submit" onClick={e => {
@@ -789,6 +918,34 @@ export const Contact = (props: { title: string, onSubmit: (message: ContactMessa
   )
 }
 
+
+const Toast = ({ message, type = 'success', onClose }: { message: string, type?: 'success' | 'error', onClose: () => void }) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onClose();
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  return (
+    <div className="fixed bottom-5 right-5 z-50">
+      <div className={`${type === 'success' ? 'bg-green-500' : 'bg-red-500'} text-white px-6 py-4 rounded-lg shadow-lg`}>
+        <div className="flex items-center space-x-3">
+          {type === 'success' ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          )}
+          <span>{message}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const ErrorText = (props: { children?: string }) => {
   return (
