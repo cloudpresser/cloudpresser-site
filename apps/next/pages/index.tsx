@@ -237,138 +237,130 @@ const Portfolio = (props: any) => {
             Our Portfolio
           </h2>
           <p className="text-center text-gray-900 text-base">
-            Ultrices volutpat et adipiscing eget est risus. Sed massa elementum
-            nec, egestas amet tellus dictumst enim facilisis.
+            Explore our featured projects showcasing our expertise in mobile app development, 
+            web applications, and digital solutions that drive business growth.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-6">
-          <div className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl overflow-hidden h-full z-10">
+          <a href='https://www.vectorvest.com' className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl overflow-hidden h-full z-10">
             <div className="aspect-video">
               <Image
                 height={50}
                 width={50}
-                src="/portfolio/portfolio-1.png"
-                className="w-full h-full object-cover object-center"
+                src="/vectorvest.png"
+                className="w-full h-full object-contain object-center"
                 alt=""
               />
             </div>
             <div className="p-5">
-              <h3 className="text-2xl font-semibold mb-5">Project 1</h3>
+              <h3 className="text-2xl font-semibold mb-5">VectorVest Mobile App</h3>
               <p className="text-gray-600">
-                Sed lacinia faucibus sed quam sem tellus id suspendisse rhoncus.
-                Placerat pretium aliquam at enim. Facilisis tortor pharetra mi,
-                eget. In vitae eget est sit eget. Tortor placerat laoreet
-                viverra et aliquam. Us sed quam sem tellus id suspendisse
-                rhoncus. Placerat pretium aliquam at enim. Facilisis tortor
-                pharetra mi, eg.
+                Welcome to the VectorVest Stock Advisory app. It puts all the information you need to make faster, smarter, better investing decisions at your fingertips.
+                VectorVest is the only service that analyzes, sorts and ranks over 8,000 stocks every day for Value, Safety and Timing. It tells you when to buy, what to buy and when to sell. And, it is the only service that combines the power of fundamental valuation with the insight of technical analysis. VectorVest provides answers, not just data, for you to analyze on your own. We do the work. You reap the profits.
               </p>
             </div>
-          </div>
+          </a>
           <div className="flex flex-col space-y-6">
-            <div
+            <a
+              href='https://apps.apple.com/us/app/finequities/id1564158426'
               className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl lg:flex-1 sm:flex sm:items-center border border-gray-100 overflow-hidden z-20"
             >
-              <div className="sm:w-1/2 h-64 sm:h-full flex-shrink-0">
+              <div className="sm:w-1/2 h-40 sm:h-full flex-shrink-0">
                 <Image
                   height={50}
                   width={50}
-                  src="/portfolio/portfolio-2.png"
-                  className="w-full h-full object-center object-cover"
+                  src="/finequities.png"
+                  className="w-full h-full object-center object-contain"
                   alt=""
                 />
               </div>
               <div className="p-4">
-                <h3 className="text-2xl font-semibold mb-5">Project 2</h3>
+                <h3 className="text-2xl font-semibold mb-5">Finequities Mobile App</h3>
                 <p className="text-gray-600">
-                  Sed lacinia faucibus sed quam sem tellus id suspendisse
-                  rhoncus. Placerat pretium aliquam at enim. Facilisis tortor
-                  pharetra mi, eget. In vitae eget est sit eget. Tortor placerat
-                  laoreet viverra et aliquam, tortor pharetra mi, eg.
+                  Finequities is a social investing platform that combines the power of artificial intelligence (AI) with social networking features. It allows users to connect with a community of investors, access investment insights, and make informed investment decisions.
                 </p>
               </div>
-            </div>
-            <div
+            </a>
+            <a
+              href='https://borroup.com'
               className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl lg:flex-1 sm:flex sm:items-center border border-gray-100 overflow-hidden z-30"
             >
-              <div className="sm:w-1/2 h-64 sm:h-full flex-shrink-0">
+              <div className="sm:w-1/2 h-40 sm:h-full flex-shrink-0">
                 <Image
                   height={50}
                   width={50}
-                  src="/portfolio/portfolio-3.png"
-                  className="w-full h-full object-center object-cover"
+                  src="/borroup.webp"
+                  className="w-full object-center object-contain"
                   alt=""
                 />
               </div>
               <div className="p-4">
-                <h3 className="text-2xl font-semibold mb-5">Project 3</h3>
+                <h3 className="text-2xl font-semibold mb-5">BorroUp</h3>
                 <p className="text-gray-600">
-                  Sed lacinia faucibus sed quam sem tellus id suspendisse
-                  rhoncus. Placerat pretium aliquam at enim. Facilisis tortor
-                  pharetra mi, eget. In vitae eget est sit eget. Tortor placerat
-                  laoreet viverra et aliquam, tortor pharetra mi, eg.
+                  Welcome to BorroUp, the ultimate peer-to-peer mobile platform for renting adventure gear. Whether you're an outdoor enthusiast looking to save on gear for your next adventure or someone with unused equipment, BorroUp has got you covered. Our mission is to create a sustainable community where everyone can enjoy the great outdoors without the financial burden of purchasing expensive gear.
                 </p>
               </div>
-            </div>
+            </a>
           </div>
         </div>
 
-        <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl overflow-hidden h-full z-40">
-            <div className="aspect-video">
-              <Image
-                height={50}
-                width={50}
-                src="/portfolio/portfolio-4.png"
-                className="w-full h-full object-cover object-center"
-                alt=""
-              />
-            </div>
-            <div className="p-5">
-              <h3 className="text-2xl font-semibold mb-5">Project 4</h3>
-              <p className="text-gray-600">
-                Sed lacinia faucibus sed quam sem tellus id suspendisse rhoncus.
-                Placerat pretium.
-              </p>
-            </div>
-          </div>
-          <div className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl overflow-hidden h-full z-50">
-            <div className="aspect-video">
-              <Image
-                height={50}
-                width={50}
-                src="/portfolio/portfolio-5.png"
-                className="w-full h-full object-cover object-center"
-                alt=""
-              />
-            </div>
-            <div className="p-5">
-              <h3 className="text-2xl font-semibold mb-5">Project 5</h3>
-              <p className="text-gray-600">
-                Sed lacinia faucibus sed quam sem tellus id suspendisse rhoncus.
-                Placerat pretium.
-              </p>
-            </div>
-          </div>
-          <div className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl overflow-hidden h-full z-60">
-            <div className="aspect-video">
-              <Image
-                height={50}
-                width={50}
-                src="/portfolio/portfolio-6.png"
-                className="w-full h-full object-cover object-center"
-                alt=""
-              />
-            </div>
-            <div className="p-5">
-              <h3 className="text-2xl font-semibold mb-5">Project 6</h3>
-              <p className="text-gray-600">
-                Sed lacinia faucibus sed quam sem tellus id suspendisse rhoncus.
-                Placerat pretium.
-              </p>
-            </div>
-          </div>
-        </div>
+        {/* <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"> */}
+        {/*   <div className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl overflow-hidden h-full z-40"> */}
+        {/*     <div className="aspect-video"> */}
+        {/*       <Image */}
+        {/*         height={50} */}
+        {/*         width={50} */}
+        {/*         src="/portfolio/portfolio-4.png" */}
+        {/*         className="w-full h-full object-cover object-center" */}
+        {/*         alt="" */}
+        {/*       /> */}
+        {/*     </div> */}
+        {/*     <div className="p-5"> */}
+        {/*       <h3 className="text-2xl font-semibold mb-5">Project 4</h3> */}
+        {/*       <p className="text-gray-600"> */}
+        {/*         Sed lacinia faucibus sed quam sem tellus id suspendisse rhoncus. */}
+        {/*         Placerat pretium. */}
+        {/*       </p> */}
+        {/*     </div> */}
+        {/*   </div> */}
+        {/*   <div className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl overflow-hidden h-full z-50"> */}
+        {/*     <div className="aspect-video"> */}
+        {/*       <Image */}
+        {/*         height={50} */}
+        {/*         width={50} */}
+        {/*         src="/portfolio/portfolio-5.png" */}
+        {/*         className="w-full h-full object-cover object-center" */}
+        {/*         alt="" */}
+        {/*       /> */}
+        {/*     </div> */}
+        {/*     <div className="p-5"> */}
+        {/*       <h3 className="text-2xl font-semibold mb-5">Project 5</h3> */}
+        {/*       <p className="text-gray-600"> */}
+        {/*         Sed lacinia faucibus sed quam sem tellus id suspendisse rhoncus. */}
+        {/*         Placerat pretium. */}
+        {/*       </p> */}
+        {/*     </div> */}
+        {/*   </div> */}
+        {/*   <div className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl overflow-hidden h-full z-60"> */}
+        {/*     <div className="aspect-video"> */}
+        {/*       <Image */}
+        {/*         height={50} */}
+        {/*         width={50} */}
+        {/*         src="/portfolio/portfolio-6.png" */}
+        {/*         className="w-full h-full object-cover object-center" */}
+        {/*         alt="" */}
+        {/*       /> */}
+        {/*     </div> */}
+        {/*     <div className="p-5"> */}
+        {/*       <h3 className="text-2xl font-semibold mb-5">Project 6</h3> */}
+        {/*       <p className="text-gray-600"> */}
+        {/*         Sed lacinia faucibus sed quam sem tellus id suspendisse rhoncus. */}
+        {/*         Placerat pretium. */}
+        {/*       </p> */}
+        {/*     </div> */}
+        {/*   </div> */}
+        {/* </div> */}
       </div>
     </section>
   )

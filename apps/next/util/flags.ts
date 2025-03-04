@@ -1,6 +1,6 @@
 export const flags = {
     services: true,
-    portfolio: false,
+    portfolio: true,
     contact: true,
     blog: false,
     price: false,
