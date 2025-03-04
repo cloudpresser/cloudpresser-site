@@ -237,20 +237,20 @@ const Portfolio = (props: any) => {
             Our Portfolio
           </h2>
           <p className="text-center text-gray-900 text-base">
-            Explore our featured projects showcasing our expertise in mobile app development, 
+            Explore our featured projects showcasing our expertise in mobile app development,
             web applications, and digital solutions that drive business growth.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-6">
-          <a href='https://www.vectorvest.com' className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl overflow-hidden h-full z-10">
-            <div className="aspect-video">
+        <div className="grid lg:grid-cols-12 gap-8">
+          <a href='https://www.vectorvest.com' className="lg:col-span-5 transition-all ease-in-out delay-150 shadow-lg hover:shadow-primary hover:-translate-y-3 rounded-xl overflow-hidden h-full z-10 bg-white">
+            <div className="relative h-[400px]">
               <Image
-                height={50}
-                width={50}
                 src="/vectorvest.png"
-                className="w-full h-full object-contain object-center"
-                alt=""
+                fill
+                className="object-contain p-4"
+                quality={90}
+                alt="VectorVest Mobile App Screenshot"
               />
             </div>
             <div className="p-5">
@@ -261,18 +261,18 @@ const Portfolio = (props: any) => {
               </p>
             </div>
           </a>
-          <div className="flex flex-col space-y-6">
+          <div className="flex flex-col space-y-8 lg:col-span-7">
             <a
               href='https://apps.apple.com/us/app/finequities/id1564158426'
-              className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl lg:flex-1 sm:flex sm:items-center border border-gray-100 overflow-hidden z-20"
+              className="transition-all ease-in-out delay-150 shadow-lg hover:shadow-primary hover:-translate-y-3 rounded-xl flex flex-col border border-gray-100 overflow-hidden z-20 bg-white"
             >
-              <div className="sm:w-1/2 h-40 sm:h-full flex-shrink-0">
+              <div className="relative h-[200px]">
                 <Image
-                  height={50}
-                  width={50}
                   src="/finequities.png"
-                  className="w-full h-full object-center object-contain"
-                  alt=""
+                  fill
+                  className="object-contain p-4"
+                  quality={90}
+                  alt="Finequities Mobile App Screenshot"
                 />
               </div>
               <div className="p-4">
@@ -284,15 +284,15 @@ const Portfolio = (props: any) => {
             </a>
             <a
               href='https://borroup.com'
-              className="transition-all ease-in-out delay-150 shadow-md hover:shadow-primary hover:-translate-y-3 rounded-xl lg:flex-1 sm:flex sm:items-center border border-gray-100 overflow-hidden z-30"
+              className="transition-all ease-in-out delay-150 shadow-lg hover:shadow-primary hover:-translate-y-3 rounded-xl flex flex-col border border-gray-100 overflow-hidden z-20 bg-white"
             >
-              <div className="sm:w-1/2 h-40 sm:h-full flex-shrink-0">
+              <div className="relative h-[200px]">
                 <Image
-                  height={50}
-                  width={50}
-                  src="/borroup.webp"
-                  className="w-full object-center object-contain"
-                  alt=""
+                  src="/borroup.png"
+                  fill
+                  className="object-contain p-4"
+                  quality={90}
+                  alt="BorroUp App Screenshot"
                 />
               </div>
               <div className="p-4">
