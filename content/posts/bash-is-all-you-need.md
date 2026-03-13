@@ -29,6 +29,14 @@ No framework needed. No plugin system. No custom tool definitions. The model alr
 
 But notice what's happening in that loop. The model is doing two things: reasoning about what to do, and generating the command to do it. Bash handles the second part flawlessly. Nobody is handling the first part.
 
+## Skills: Progressive Discovery and Its Limits
+
+Pi's answer to "how does a minimal agent learn new capabilities?" is skills — markdown files that describe bash commands, CLI patterns, and workflows. The agent reads them on demand rather than loading everything into the system prompt upfront. This is progressive context disclosure, and it's elegant. Zechner explicitly rejected MCP because popular servers like Playwright MCP (21 tools, 13.7k tokens) and Chrome DevTools MCP (26 tools, 18k tokens) dump their entire tool descriptions into context on every session — 7-9% of your context window gone before you've started working.
+
+The skill system goes further. Pi supports hot-reloading, so the agent can write a new skill, reload it, test it, and iterate — all within a single session. Software building its own tooling in real time. Ronacher took this to its logical conclusion: he replaced all his browser automation CLIs and MCPs with a [single skill that just uses Chrome DevTools Protocol](https://github.com/mitsuhiko/agent-stuff/blob/main/skills/web-browser/SKILL.md). He has skills for commit message formatting, changelog updates, redirecting `pip` to `uv`. These aren't downloaded from a marketplace. The agent builds and maintains its own functionality. It's genuinely impressive.
+
+But even this elegant system can't escape the fundamental constraint. You could theoretically give the agent every skill and every tool. The problem is that context windows are a fixed budget. Load too many skills and the system becomes wasteful — tokens spent on tool descriptions instead of reasoning, output quality degrading as context fills up. The agent discovers what it needs well enough in stable environments. But in a changing environment where new tools appear, old patterns shift, and the combinatorial space of possible capabilities keeps growing, that discovery process becomes the bottleneck. What to load, when to load it, and whether the agent even knows what it doesn't know — those aren't execution problems. Those are control problems.
+
 ## The Context Problem Nobody Talks About
 
 A developer on Reddit recently tracked their AI coding agent's behavior on a real codebase. Every time they asked it to add a new API endpoint, the agent spent 15-20 tool calls just *figuring out where things are* — grepping for routes, reading middleware files, checking types, reading more files. By the time it started writing code, it had burned through a significant chunk of its context window on orientation, not execution.
