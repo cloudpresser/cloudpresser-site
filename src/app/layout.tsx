@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Luiz Ozorio",
     description:
       "I build control systems for intelligent software, where humans supervise AI agents executing complex tasks.",

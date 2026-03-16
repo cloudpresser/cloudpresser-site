@@ -17,15 +17,27 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
+  const url = `https://cloudpresser.com/writing/${slug}`;
+
   return {
     title: post.title,
     description: post.description,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: post.title,
       description: post.description,
+      url,
       type: "article",
       publishedTime: post.date,
       authors: ["Luiz Ozorio"],
+      tags: post.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
     },
   };
 }
@@ -43,8 +55,36 @@ export default async function PostPage({ params }: PageProps) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    author: {
+      "@type": "Person",
+      name: "Luiz Ozorio",
+      url: "https://cloudpresser.com",
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Luiz Ozorio",
+      url: "https://cloudpresser.com",
+    },
+    url: `https://cloudpresser.com/writing/${slug}`,
+    keywords: post.tags,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://cloudpresser.com/writing/${slug}`,
+    },
+  };
+
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header className="mb-10 space-y-4">
         <h1 className="font-serif text-[2rem] sm:text-[2.75rem] sm:leading-[1.1] font-semibold tracking-tight text-foreground text-wrap-balance">
           {post.title}
