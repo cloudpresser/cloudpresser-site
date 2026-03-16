@@ -9,11 +9,17 @@ seriesPart: 1
 
 "Bash is all you need" is technically correct. And that's exactly why it's misleading.
 
-Vercel recently [stripped 80% of the tools](https://vercel.com/blog/we-removed-80-percent-of-our-agents-tools) from their internal data agent, gave it a bash shell, and watched accuracy jump to 100% while execution time dropped 3.5x. Hugging Face's CTO built composable CLI tools for the same reason — low context usage, discoverable via `--help`, and agents can chain them together without scaffolding. The `mini-claude-code` tutorial that went viral starts at v0: fifty lines of Python and one bash tool. That's the whole agent. And Mario Zechner's [Pi](https://github.com/badlogic/pi-mono) — the minimal coding agent that powers OpenClaw — ships with exactly four tools (read, write, edit, bash), a system prompt under 1,000 tokens, and [competes with full-featured agents](https://mariozechner.at/posts/2025-11-30-pi-coding-agent/) on Terminal-Bench. Minimalism isn't a limitation. It's winning.
+Vercel recently [stripped 80% of the tools](https://vercel.com/blog/we-removed-80-percent-of-our-agents-tools) from their internal data agent, gave it a bash shell, and watched accuracy jump to 100% while execution time dropped 3.5x. Mario Zechner's [Pi](https://github.com/badlogic/pi-mono) — the minimal coding agent that powers OpenClaw — takes this even further: four tools (read, write, edit, bash), a system prompt under 1,000 tokens, and it [competes with full-featured agents](https://mariozechner.at/posts/2025-11-30-pi-coding-agent/) on Terminal-Bench. Minimalism isn't a limitation. It's winning.
 
 Execution is a solved problem. The model generates a command, bash runs it, the output comes back. This loop works for file manipulation, git operations, test runs, deployments, database queries. It works so well that smart people are concluding the architecture problem is done.
 
-It isn't.
+It isn't. Bash lives in one box of a much larger pipeline:
+
+```
+human intent → context curation → task orchestration → agent execution → verification → human supervision
+```
+
+The hard engineering is everything else. What we're actually building — whether we recognize it or not — is a control system. And the AI agent is the actuator, not the decision maker.
 
 ## What Bash Actually Solves
 
@@ -25,17 +31,19 @@ This makes it the perfect bottom layer of an agent stack:
 LLM reasons → generates command → bash executes → output returns
 ```
 
-No framework needed. No plugin system. No custom tool definitions. The model already knows bash, and bash already knows your system. Vercel proved this — their agent got *better* when they removed the abstraction layers and let Claude read files directly with `grep`, `cat`, and `ls`. Pi proves this even more radically — no MCP, no sub-agents, no plan mode, no built-in to-do lists. Zechner's philosophy: "if I don't need it, it won't be built." The entire system prompt and tool definitions come in under 1,000 tokens. And it works.
+No framework needed. No plugin system. No custom tool definitions. The model already knows bash, and bash already knows your system. Pi proves this radically — no MCP, no sub-agents, no plan mode, no built-in to-do lists. The entire system prompt and tool definitions come in under 1,000 tokens. The philosophy: "if I don't need it, it won't be built." And it works.
 
 But notice what's happening in that loop. The model is doing two things: reasoning about what to do, and generating the command to do it. Bash handles the second part flawlessly. Nobody is handling the first part.
 
-## Skills: Progressive Discovery and Its Limits
+## Progressive Discovery and Its Limits
 
-Pi's answer to "how does a minimal agent learn new capabilities?" is skills — markdown files that describe bash commands, CLI patterns, and workflows. The agent reads them on demand rather than loading everything into the system prompt upfront. This is progressive context disclosure, and it's elegant. Zechner explicitly rejected MCP because popular servers like Playwright MCP (21 tools, 13.7k tokens) and Chrome DevTools MCP (26 tools, 18k tokens) dump their entire tool descriptions into context on every session — 7-9% of your context window gone before you've started working.
+If execution is minimal, how does a minimal agent learn new capabilities? The emerging pattern is progressive context disclosure — loading capability descriptions on demand rather than baking everything into the system prompt upfront. Some agents use [skill files](https://github.com/badlogic/pi-mono): markdown documents that describe bash commands, CLI patterns, and workflows, read only when relevant.
 
-The skill system goes further. Pi supports hot-reloading, so the agent can write a new skill, reload it, test it, and iterate — all within a single session. Software building its own tooling in real time. Ronacher took this to its logical conclusion: he replaced all his browser automation CLIs and MCPs with a [single skill that just uses Chrome DevTools Protocol](https://github.com/mitsuhiko/agent-stuff/blob/main/skills/web-browser/SKILL.md). He has skills for commit message formatting, changelog updates, redirecting `pip` to `uv`. These aren't downloaded from a marketplace. The agent builds and maintains its own functionality. It's genuinely impressive.
+The motivation is clear. Popular MCP servers like Playwright MCP (21 tools, 13.7k tokens) and Chrome DevTools MCP (26 tools, 18k tokens) dump their entire tool descriptions into context on every session — 7-9% of your context window gone before you've started working. Progressive disclosure avoids that tax.
 
-But even this elegant system can't escape the fundamental constraint. You could theoretically give the agent every skill and every tool. The problem is that context windows are a fixed budget. Load too many skills and the system becomes wasteful — tokens spent on tool descriptions instead of reasoning, output quality degrading as context fills up. The agent discovers what it needs well enough in stable environments. But in a changing environment where new tools appear, old patterns shift, and the combinatorial space of possible capabilities keeps growing, that discovery process becomes the bottleneck. What to load, when to load it, and whether the agent even knows what it doesn't know — those aren't execution problems. Those are control problems.
+The pattern goes further than static documentation. Agents can hot-reload skills, meaning they can write a new capability description, load it, test it, and iterate — all within a single session. Software building its own tooling in real time. Engineers have used this to [replace entire browser automation stacks](https://github.com/mitsuhiko/agent-stuff/blob/main/skills/web-browser/SKILL.md) with a single skill file that talks directly to Chrome DevTools Protocol. No marketplace, no framework — the agent builds and maintains its own functionality.
+
+But even this elegant approach can't escape the fundamental constraint. Context windows are a fixed budget. Load too many skills and the system becomes wasteful — tokens spent on tool descriptions instead of reasoning, output quality degrading as context fills up. Discovery works well enough in stable environments. But in a changing environment where new tools appear, old patterns shift, and the combinatorial space of possible capabilities keeps growing, discovery becomes the bottleneck. What to load, when to load it, and whether the agent even knows what it doesn't know — those aren't execution problems. Those are control problems.
 
 ## The Context Problem Nobody Talks About
 
@@ -66,13 +74,7 @@ JetBrains recently gave this a name: *AI agent debt*. The subtle, compounding co
 
 ## The Missing Layer
 
-Here's what's actually emerging in teams that ship reliably with AI agents:
-
-```
-human intent → context curation → task orchestration → agent execution → verification → human supervision
-```
-
-Bash lives in one box of that pipeline. The hard engineering is everything else.
+Here's what that pipeline actually looks like in teams that ship reliably with AI agents. Each layer has a distinct engineering problem:
 
 **Context curation** is deciding what the agent needs to know before it starts — project structure, domain constraints, recent changes, relevant patterns. Not "dump everything in the prompt." Targeted, curated context that puts the right information where the model reasons best.
 
@@ -88,10 +90,10 @@ The right metric isn't "agent completed task." It's "engineer approved merge."
 
 This architecture — intent, orchestration, execution, verification, supervision — isn't new. It's the same pattern from robotics, aviation, and industrial automation. Machine telemetry flows up, operator commands flow down, and humans supervise outcomes.
 
-The AI agent is an actuator. A powerful one. But actuators don't run unsupervised in any serious system. Even Pi — which runs in full YOLO mode with no permission prompts — is designed around observability. Zechner explicitly chose no sub-agents because "you have zero visibility into what that sub-agent does." Armin Ronacher, who [adopted Pi as his primary agent](https://lucumr.pocoo.org/2026/1/31/pi/), built extensions for code review and file tracking on top of it — supervision tooling, not execution tooling. The minimal execution layer works precisely because the human stays in the loop.
+The AI agent is an actuator. A powerful one. But actuators don't run unsupervised in any serious system. Even the most minimal agents — the ones that run in full YOLO mode with no permission prompts — are designed around observability. Sub-agents get rejected because "you have zero visibility into what that sub-agent does." Engineers who adopt these minimal execution layers immediately start building extensions on top: code review tooling, file change tracking, diff summaries — supervision tooling, not execution tooling. The minimal execution layer works precisely because the human stays in the loop.
 
 Bash may be all you need for execution. But reliable AI systems require something more: control systems that manage context, verify outcomes, and keep humans in the loop. As agents become more capable, the problem shifts from generating commands to supervising intelligent systems operating in an open world.
 
-The industry is building better actuators. What's missing is the control architecture around them.
+The industry has spent two years optimizing the actuator. The real engineering challenge is the control system around it.
 
 That's what I'll dig into next: why the way most teams handle verification — using expensive models to review cheap model output — has the entire pipeline backwards.
