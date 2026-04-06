@@ -1,6 +1,6 @@
 ---
 title: "Observability for AI Agents"
-date: "2026-04-07"
+date: "2026-04-20"
 description: "AI systems fail in ways that look like success. You can't find these failures in a chat log. You need traces. AI agent systems need the same observability infrastructure that distributed systems built over the past decade."
 tags: ["AI", "Control Systems", "Observability", "OpenTelemetry"]
 series: "Control Systems for Intelligent Software"
