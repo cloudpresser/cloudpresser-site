@@ -1,6 +1,6 @@
 ---
 title: "Why the Smart Model Reviewer Pattern Is Backwards"
-date: "2026-03-24"
+date: "2026-04-06"
 description: "Most AI pipelines have generation and verification backwards. Smart models should generate. Cheap models should verify. The industry is putting its best capability in the wrong place — and it's creating a quality ceiling, not just a cost problem."
 tags: ["AI", "Control Systems", "Agent Architecture", "LLM Infrastructure"]
 series: "Control Systems for Intelligent Software"
