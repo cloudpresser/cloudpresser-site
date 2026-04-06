@@ -1,6 +1,6 @@
 ---
 title: "Why Coherence Doesn't Scale with Capability"
-date: "2026-04-28"
+date: "2026-05-11"
 description: "There's a quiet assumption underneath most AI discussions: if capability keeps improving, coherence will eventually follow. Gödel's incompleteness theorems suggest otherwise. The supervision layer isn't a temporary workaround — it's part of the design."
 tags: ["AI", "Control Systems", "Gödel", "System Design"]
 series: "Control Systems for Intelligent Software"
