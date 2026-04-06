@@ -1,6 +1,6 @@
 ---
 title: "Why AI Needs Control Surfaces, Not Just Chat"
-date: "2026-04-14"
+date: "2026-04-27"
 description: "Once you can see what the system is doing, the next problem is interacting with it. Chat interfaces for AI agents are like flying a drone through a text terminal. The industry needs purpose-built control surfaces."
 tags: ["AI", "Control Systems", "Agent Architecture", "React Native"]
 series: "Control Systems for Intelligent Software"
