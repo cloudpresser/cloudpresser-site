@@ -1,6 +1,6 @@
 ---
 title: "AI Agents Are Control Systems"
-date: "2026-03-31"
+date: "2026-04-13"
 description: "We're building AI systems like they're chatbots. They're not. They're control systems. The architecture that robotics solved decades ago — machine, telemetry, interface, human — is the same architecture AI agents need."
 tags: ["AI", "Control Systems", "Agent Architecture", "ArduPilot"]
 series: "Control Systems for Intelligent Software"
