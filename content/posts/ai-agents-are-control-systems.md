@@ -100,7 +100,3 @@ There's a deeper reason human judgment can't be automated away — one that has 
 The teams building AI agents without this architecture will keep hitting the same wall: agents that execute well but can't be trusted, supervised, or debugged at scale. The teams that recognize the pattern — machine, telemetry, interface, human — will build systems that actually work in production.
 
 In the [next post](/writing/observability-for-ai-agents), I'll cover the instrumentation layer that makes all of this debuggable and trustworthy: observability.
-
----
-
-*Luiz Ozorio is a Tech Lead and ArduPilot contributor who builds control systems for intelligent software. He writes about AI execution infrastructure, agent supervision, and the architectural patterns that make autonomous systems reliable at [cloudpresser.com](https://cloudpresser.com).*
