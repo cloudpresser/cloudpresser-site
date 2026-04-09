@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getAllPostSlugs, getPostBySlug } from "@/lib/posts";
+import {
+  getAllPostSlugs,
+  getPostBySlug,
+  getAdjacentSeriesPosts,
+  SERIES_NAME,
+  SERIES_DEFINITION,
+} from "@/lib/posts";
 import { Badge } from "@/components/ui/badge";
+import { SeriesNav } from "@/components/series-nav";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -54,6 +61,10 @@ function formatDate(dateStr: string): string {
 export default async function PostPage({ params }: PageProps) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
+  const isSeriesPost = post.series === SERIES_NAME;
+  const { prev, next } = isSeriesPost
+    ? getAdjacentSeriesPosts(slug)
+    : { prev: null, next: null };
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -96,7 +107,9 @@ export default async function PostPage({ params }: PageProps) {
               <span className="text-border">|</span>
               <span className="font-mono text-xs text-muted-foreground/60">
                 {post.series}
-                {post.seriesPart ? ` — Part ${post.seriesPart} of 5` : ""}
+                {post.seriesPart
+                  ? ` — Part ${post.seriesPart} of ${SERIES_DEFINITION.filter((e) => !e.isBoundary).length}`
+                  : ""}
               </span>
             </>
           )}
@@ -120,6 +133,53 @@ export default async function PostPage({ params }: PageProps) {
         className="prose"
         dangerouslySetInnerHTML={{ __html: post.contentHtml }}
       />
+
+      {/* Series traversal: prev/next arrows + full series nav */}
+      {isSeriesPost && (
+        <div className="mt-16 space-y-8">
+          {/* Prev / Next arrows */}
+          {(prev || next) && (
+            <nav
+              aria-label="Previous and next posts in series"
+              className="flex items-center justify-between gap-4"
+            >
+              <div className="flex-1">
+                {prev && (
+                  <Link
+                    href={`/writing/${prev.slug}`}
+                    className="group inline-flex flex-col gap-1"
+                  >
+                    <span className="text-xs text-muted-foreground">
+                      &larr; Previous
+                    </span>
+                    <span className="text-sm text-foreground group-hover:text-primary transition-colors">
+                      {prev.layer}
+                    </span>
+                  </Link>
+                )}
+              </div>
+              <div className="flex-1 text-right">
+                {next && (
+                  <Link
+                    href={`/writing/${next.slug}`}
+                    className="group inline-flex flex-col gap-1 items-end"
+                  >
+                    <span className="text-xs text-muted-foreground">
+                      Next &rarr;
+                    </span>
+                    <span className="text-sm text-foreground group-hover:text-primary transition-colors">
+                      {next.layer}
+                    </span>
+                  </Link>
+                )}
+              </div>
+            </nav>
+          )}
+
+          {/* Full series navigation */}
+          <SeriesNav currentSlug={slug} />
+        </div>
+      )}
 
       <footer className="border-t border-border pt-6 mt-16">
         <p className="text-sm text-muted-foreground">

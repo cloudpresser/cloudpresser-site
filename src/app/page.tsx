@@ -107,12 +107,12 @@ export default function Home() {
           patterns in robotics and industrial automation.
         </p>
         <p>
-          Currently writing a five-part series on{" "}
+          Building a system for reliable AI agents:{" "}
           <Link
-            href="/writing"
+            href="/control-systems-for-ai"
             className="text-primary underline underline-offset-3 decoration-primary/40 hover:decoration-primary transition-colors"
           >
-            control systems for intelligent software
+            Control Systems for Intelligent Software
           </Link>
           .
         </p>
