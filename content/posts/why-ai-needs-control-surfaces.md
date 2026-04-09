@@ -112,7 +112,3 @@ The compressible parts of work can be systematized. What remains — judgment, i
 Execution, verification, observability, and control surfaces — this is the architecture. The hard part was never intelligence. It was building systems that can be understood, supervised, and trusted.
 
 This is what turns AI from a demo into something you can actually rely on. Without it, you don't have a system. You have a demo with good marketing.
-
----
-
-*Luiz Ozorio is a Tech Lead and engineer who builds control systems for intelligent software — orchestration pipelines, execution tracing, and supervision interfaces where humans direct AI agents. More at [cloudpresser.com](https://cloudpresser.com).*
