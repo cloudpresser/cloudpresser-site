@@ -96,7 +96,3 @@ If execution isn't the hard part ([post #1](/writing/bash-is-all-you-need)), and
 The hard problem is the control system that connects human intent to agent execution to verified outcomes. It's the orchestration layer, the supervision interface, the feedback loop that keeps the whole pipeline aligned with what you actually wanted.
 
 That's not a model problem. It's an architecture problem. And it has a name — one that robotics and industrial automation solved decades ago.
-
----
-
-*Luiz Ozorio is a Tech Lead who builds control systems for intelligent software — orchestration pipelines, execution tracing, and supervision interfaces where humans direct AI agents. More at [cloudpresser.com](https://cloudpresser.com).*
