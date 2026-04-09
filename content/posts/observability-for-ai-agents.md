@@ -114,7 +114,3 @@ Without this layer, agents don't fail loudly — they fail silently. And silent 
 Observability gives you the data. But data without an interface is just logs. The next problem is obvious: how do you turn this into something a human can actually act on?
 
 That's the subject of the [next post](/writing/why-ai-needs-control-surfaces): control surfaces — the interfaces that turn telemetry into human decisions.
-
----
-
-*Luiz Ozorio is a Tech Lead and control systems engineer building AI execution infrastructure and supervision interfaces. He writes at [cloudpresser.com](https://cloudpresser.com).*
