@@ -58,6 +58,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${lora.variable} ${jetbrainsMono.variable} antialiased font-sans`}
       >
+        <script src="https://cloudpresserai.com/chatbot-widget.js" data-chatbot-id="41c57ee0-2d59-4b50-81e9-aaf675a642db" async></script>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
