@@ -67,6 +67,44 @@ Both systems share the same hard requirements:
 
 **Supervised autonomy.** Both systems operate on a spectrum. ArduPilot has flight modes ranging from MANUAL (full human control) to AUTO (full autonomy) with GUIDED and LOITER in between. AI agents need the same spectrum — and the industry is discovering this in real time. Michael Linell's recent piece on AI governance describes the shift from "human-in-the-loop" to "human-on-the-loop," which is exactly the flight mode spectrum applied to software agents.
 
+## Control Systems Close the Loop
+
+There's a fifth requirement that's easy to miss if you only look at the architecture diagram: control systems don't just observe. They continuously reconcile.
+
+A drone doesn't execute a flight plan and hope for the best. Its autopilot runs a tight loop — dozens of times per second — comparing intended trajectory against actual position against raw sensor readings, then adjusting. In ArduPilot, this is a PID controller layered on top of a Kalman filter. The PID corrects for error between where the drone should be and where it is. The Kalman filter fuses noisy data from GPS, accelerometers, barometers, and magnetometers into a coherent estimate of reality. Together, they form a reconciliation loop:
+
+```
+plan (waypoint mission)
+    ↓
+execute (motor output)
+    ↓
+sense (GPS, IMU, barometer)
+    ↓
+reconcile (Kalman filter: fuse noisy inputs into state estimate)
+    ↓
+adjust (PID controller: correct trajectory)
+    ↓
+execute again
+```
+
+This loop is what makes it a control system rather than a script. A script runs a plan. A control system continuously reconciles the plan against reality and adjusts.
+
+AI agents need the same loop. Execution produces outputs. Telemetry captures what happened. But the critical step — the one most systems skip — is reconciling intent with reality: Did the code change match the original goal? Did the retrieval actually support the task? Did the agent drift from the plan? Did the environment invalidate earlier assumptions?
+
+This reconciliation happens at three levels:
+
+**System-level.** Evaluation gates, verification steps, automated retries. The agent checks its own output against defined criteria before proceeding. This is the PID controller — fast, bounded, correcting for known error types.
+
+**Human-level.** Intervention, redirection, approval. The engineer reviews agent output and adjusts course. This is the operator overriding the autopilot — slower, but capable of handling situations the automated loop can't.
+
+**Learning-level.** Capturing new patterns for future runs. When a human corrects an agent — restructures a prompt, provides a missing convention, resolves an ambiguity — that correction is a training signal. Systems that propagate corrections back into agent behavior don't just execute better on the current task. They execute better on every future task. This is what some teams are starting to call "back-propagation for knowledge bases" — not gradient descent, but propagating outcomes back into behavior.
+
+The learning level is where things get interesting at scale. As agents operate across larger codebases, longer tasks, and more open-ended goals, the gap between plan and reality widens. The system enters what you might call undefined control regions — territory where the plan is incomplete, the environment is changing faster than the agent can adapt, and the agent's internal model is insufficient. This is the equivalent of a drone flying into weather conditions it wasn't programmed for.
+
+At that point, the loop must tighten. More frequent sensing. Stronger reconciliation. Faster human intervention. The system doesn't need more autonomy — it needs more control.
+
+Without this loop, you don't have a control system. You have a script with monitoring.
+
 ## What QGroundControl Got Right
 
 QGroundControl is not a chat interface. It's a control surface.
@@ -89,7 +127,7 @@ This is the control surface layer. It's the missing piece between human intent a
 
 ## The Pattern Is the Point
 
-The architecture exists because the world is unpredictable — not because the agents are incapable. This was true for drones in 2014. It's true for AI agents in 2026.
+The architecture exists because execution continuously diverges from intent — not because the agents are incapable. This was true for drones in 2014. It's true for AI agents in 2026.
 
 In [the previous post](/writing/smart-model-reviewer-is-backwards), I argued that verification is a bounded problem — cheap models can handle it. But alignment with intent? Knowing whether the agent is doing what you actually wanted? That requires human judgment, delivered through purpose-built interfaces, informed by real-time telemetry.
 
