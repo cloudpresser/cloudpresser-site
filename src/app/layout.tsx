@@ -30,12 +30,12 @@ export const metadata: Metadata = {
     template: "%s | Luiz Ozorio",
   },
   description:
-    "I build control systems for intelligent software, where humans supervise AI agents executing complex tasks.",
+    "Staff AI Systems Engineer building production AI platforms — orchestration, evals, observability, and supervision for reliable LLM systems.",
   metadataBase: new URL("https://cloudpresser.com"),
   openGraph: {
     title: "Luiz Ozorio",
     description:
-      "I build control systems for intelligent software, where humans supervise AI agents executing complex tasks.",
+      "Staff AI Systems Engineer building production AI platforms — orchestration, evals, observability, and supervision for reliable LLM systems.",
     url: "https://cloudpresser.com",
     siteName: "Luiz Ozorio",
     type: "website",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Luiz Ozorio",
     description:
-      "I build control systems for intelligent software, where humans supervise AI agents executing complex tasks.",
+      "Staff AI Systems Engineer building production AI platforms — orchestration, evals, observability, and supervision for reliable LLM systems.",
   },
 };
 

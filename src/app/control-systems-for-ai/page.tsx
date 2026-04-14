@@ -163,9 +163,9 @@ export default function ControlSystemsPage() {
       {/* Author */}
       <section className="border-t border-border pt-6">
         <p className="text-sm text-muted-foreground">
-          Luiz Ozorio builds control systems for intelligent software —
-          orchestration pipelines, execution tracing, and supervision interfaces
-          where humans direct AI agents.
+          Luiz Ozorio is a Staff AI Systems Engineer building production AI
+          platforms — orchestration, evals, observability, and supervision for
+          reliable LLM systems.
         </p>
         <div className="flex gap-4 mt-4">
           <Link

@@ -73,8 +73,8 @@ export default function Image() {
               maxWidth: "700px",
             }}
           >
-            Control systems for intelligent software — where humans supervise AI
-            agents executing complex tasks.
+            Staff AI Systems Engineer — production AI platforms, orchestration,
+            evals, and system reliability.
           </div>
           <div
             style={{

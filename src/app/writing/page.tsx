@@ -27,8 +27,8 @@ export default function WritingPage() {
           Writing
         </h1>
         <p className="mt-4 text-muted-foreground leading-relaxed">
-          A series on control systems for intelligent software — and other
-          thoughts on building with AI.
+          Writing on production AI systems, control loops, and reliable
+          execution.
         </p>
       </section>
 
