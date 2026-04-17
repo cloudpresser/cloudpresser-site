@@ -11,7 +11,7 @@ AI systems fail in ways that look like success. Incorrect but well-formed output
 
 If execution is solved, and verification is bounded, and agents are control systems — then the next problem is obvious: how do you observe them?
 
-AI agent systems need the same observability infrastructure that distributed systems built over the past decade. We don't need to invent it — we need to apply it.
+AI agent systems need observability at the same level of rigor as distributed systems. We don't need to invent it. We need to apply it to systems that will drift, accumulate interventions, and keep running long after a staging eval said they were safe enough to deploy.
 
 This is the fourth post in a five-part series. We've established that [execution is solved](/writing/bash-is-all-you-need) but context management isn't. That [smart models should generate, cheap models should verify](/writing/smart-model-reviewer-is-backwards). That AI agents follow the [same architecture as robotics control systems](/writing/ai-agents-are-control-systems). But none of that works without instrumentation. Without observability, control surfaces are blind and supervisors are guessing.
 
@@ -27,7 +27,7 @@ This matters because agent failures don't look like software failures. As Arize'
 
 ## What OpenTelemetry Got Right
 
-The industry is converging on OpenTelemetry as the standard telemetry layer for AI agents. The OpenTelemetry GenAI Semantic Conventions SIG is actively defining attribute schemas for LLM calls, agent invocations, tool executions, and session-level metrics. Major vendors — Datadog, Honeycomb, New Relic — already support them. Frameworks like LangChain, CrewAI, and AutoGen emit OTel-compliant spans natively.
+OpenTelemetry is emerging as the strongest candidate for a common telemetry layer for AI agents. The OpenTelemetry GenAI Semantic Conventions SIG is actively defining attribute schemas for LLM calls, agent invocations, tool executions, and session-level metrics. Major vendors such as Datadog, Honeycomb, and New Relic already support this direction.
 
 The concepts translate directly to agent systems:
 
@@ -37,6 +37,8 @@ The concepts translate directly to agent systems:
 - **Attributes** → metadata (model, tokens, temperature, context window size)
 
 This is the right approach. AI observability should flow through the same pipeline as your HTTP traces and database spans. When an agent call triggers a file write that breaks a test, you should see both the agent span and the test failure span in one trace. No context-switching between tools.
+
+Observability is not just for debugging isolated failures. It is how you determine whether a system that once looked safe remains reliable as it accumulates runs, interventions, and drift.
 
 ## Trace Trees Capture What Chat Logs Can't
 
@@ -75,6 +77,8 @@ Replayable sessions enable:
 - **Regression testing** agent pipelines against known sessions
 - **Comparing models** on identical tasks with identical context
 
+But traces only tell you what happened in one run. Run history tells you whether the system is getting safer, cheaper, or less trustworthy over time. That longitudinal view is the difference between a useful debugger and production reliability infrastructure.
+
 ## Observability Feeds the Control Surface
 
 This connects directly to the control surface argument in the [next post](/writing/why-ai-needs-control-surfaces). Observability is what gives control surfaces something to display:
@@ -84,6 +88,8 @@ This connects directly to the control surface argument in the [next post](/writi
 - **Trace viewers** render the hierarchical execution tree directly
 - **Mobile notifications** trigger on span events — failure, completion, human-needed
 - **Session replay** uses the recorded flight data
+
+I built a small control-surface demo around this idea in [`control-surface-agent`](https://github.com/cloudpresser/control-surface-agent): a single supervised run exposes framed intent, a revisable plan, structured telemetry, reconciliation, operator feedback, and a decision artifact. The important point is not the scenario. It is that observability becomes operational only when it can be inspected, compared, and corrected. The next step is the production view across many runs.
 
 Without observability, a control surface is a dashboard with no data. A mission control room with blank screens.
 
