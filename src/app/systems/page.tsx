@@ -21,6 +21,26 @@ interface System {
 
 const systems: System[] = [
   {
+    title: "Control-Surface Reliability System",
+    problem:
+      "A system judged safe once is not therefore reliable in production. Agentic decision workflows need telemetry, reconciliation, and operator intervention after deployment, not just a passing eval in staging.",
+    system:
+      "`control-surface-agent` is a bounded supervision system for agentic decisions: explicit intent framing, explicit planning, live telemetry, evidence review, reconciliation, operator controls, and a final decision artifact in one interface.",
+    control:
+      "Reliability is maintained as a closed loop. Structured telemetry captures each step, reconciliation checks divergence between plan and reality, and operator feedback can redirect execution before the artifact is finalized.",
+    outcome:
+      "A concrete production-reliability artifact that makes supervised runs legible, auditable, and correctable instead of hiding them inside chat transcripts.",
+    tags: [
+      "Control Surfaces",
+      "AI Reliability",
+      "Telemetry",
+      "Reconciliation",
+      "Human-in-the-Loop",
+    ],
+    link: "https://github.com/cloudpresser/control-surface-agent",
+    linkLabel: "GitHub",
+  },
+  {
     title: "AI PR Generation System",
     problem:
       "Manual PR authoring was the primary bottleneck across the engineering org — slow cycle times, inconsistent quality, high context-switching cost.",
