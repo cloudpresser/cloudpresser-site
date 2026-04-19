@@ -1,6 +1,49 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { getAllPosts } from "@/lib/posts";
+
+const HOME_URL = "https://cloudpresser.com";
+const THESIS_URL = `${HOME_URL}/control-systems-for-ai`;
+const SYSTEMS_URL = `${HOME_URL}/systems`;
+const WRITING_URL = `${HOME_URL}/writing`;
+
+const homeDescription =
+  "Luiz Ozorio builds AI systems and agent infrastructure for production reliability, with a focus on orchestration, evals, observability, control surfaces, and human supervision. CloudPresser's core thesis is that reliable AI systems should be built as supervised control systems, not chat systems.";
+
+export const metadata: Metadata = {
+  title: "Luiz Ozorio",
+  description: homeDescription,
+  alternates: {
+    canonical: HOME_URL,
+  },
+  keywords: [
+    "AI systems",
+    "AI agents",
+    "agent architecture",
+    "LLM infrastructure",
+    "LLMOps",
+    "orchestration",
+    "evals",
+    "observability",
+    "control systems",
+    "human-in-the-loop",
+    "supervised AI execution",
+    "intelligent software",
+  ],
+  openGraph: {
+    title: "Luiz Ozorio",
+    description: homeDescription,
+    url: HOME_URL,
+    siteName: "CloudPresser",
+    type: "profile",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Luiz Ozorio",
+    description: homeDescription,
+  },
+};
 
 const featuredSystems = [
   {
@@ -56,9 +99,89 @@ function formatDate(dateStr: string): string {
 
 export default function Home() {
   const posts = getAllPosts();
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": `${HOME_URL}/#person`,
+      name: "Luiz Ozorio",
+      url: HOME_URL,
+      description: homeDescription,
+      jobTitle: "Staff AI Systems Engineer",
+      sameAs: [
+        "https://github.com/cloudpresser",
+        "https://www.linkedin.com/in/luiz-ozorio/",
+        "https://www.npmjs.com/~cloudpresser",
+      ],
+      knowsAbout: [
+        "AI systems",
+        "AI agents",
+        "agent architecture",
+        "LLM infrastructure",
+        "LLMOps",
+        "orchestration",
+        "evals",
+        "observability",
+        "OpenTelemetry",
+        "control systems",
+        "human-in-the-loop systems",
+        "supervised AI execution",
+        "intelligent software",
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": `${HOME_URL}/#website`,
+      name: "CloudPresser",
+      url: HOME_URL,
+      description:
+        "CloudPresser is a thesis and artifact stack on reliable AI systems, arguing that agent architecture should be built as a supervised control system with orchestration, verification, observability, control surfaces, and human supervision.",
+      author: {
+        "@id": `${HOME_URL}/#person`,
+      },
+      about: [
+        {
+          "@type": "Thing",
+          name: "AI systems",
+        },
+        {
+          "@type": "Thing",
+          name: "Agent architecture",
+        },
+        {
+          "@type": "Thing",
+          name: "Control systems",
+        },
+        {
+          "@type": "Thing",
+          name: "Supervised AI execution",
+        },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "@id": `${HOME_URL}/#profile-page`,
+      url: HOME_URL,
+      name: "Luiz Ozorio",
+      description: homeDescription,
+      isPartOf: {
+        "@id": `${HOME_URL}/#website`,
+      },
+      mainEntity: {
+        "@id": `${HOME_URL}/#person`,
+      },
+      significantLink: [THESIS_URL, SYSTEMS_URL, WRITING_URL],
+    },
+  ];
 
   return (
     <div className="space-y-16 sm:space-y-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero */}
       <section className="pt-12 pb-4 sm:pt-20 sm:pb-8">
         {/* Eyebrow */}

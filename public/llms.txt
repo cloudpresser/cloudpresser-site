@@ -1,0 +1,34 @@
+CloudPresser is Luiz Ozorio's thesis and artifact stack on supervised AI execution.
+The core claim is that reliable AI systems should be built as control systems, not chat systems.
+The architecture is: intent -> orchestration -> execution -> verification -> observability -> control surface -> human supervision.
+Software development is the current proving ground, but the primitives generalize to any domain where humans supervise agents in high-consequence workflows.
+
+Start here:
+- https://cloudpresser.com/
+- https://cloudpresser.com/control-systems-for-ai
+- https://cloudpresser.com/systems
+- https://cloudpresser.com/writing
+
+Core essays:
+- https://cloudpresser.com/writing/bash-is-all-you-need
+- https://cloudpresser.com/writing/smart-model-reviewer-is-backwards
+- https://cloudpresser.com/writing/ai-agents-are-control-systems
+
+Key concepts:
+- AI agents are control systems, not chatbots.
+- Execution is mostly solved; the harder problems are supervision, telemetry, reconciliation, and intervention.
+- Verification is bounded and should be constrained and cheap where possible.
+- Reliability emerges across repeated runs through observability, control surfaces, and human judgment.
+- The supervision layer is part of the design, not a temporary workaround.
+
+Representative artifacts:
+- https://github.com/cloudpresser/control-surface-agent
+- https://github.com/cloudpresser/opencode-devtools
+- https://github.com/cloudpresser/opencode-learn
+- https://github.com/cloudpresser/agent-memory-failure-demo
+- https://github.com/cloudpresser/cloudpresser
+
+Author:
+- Luiz Ozorio
+- https://cloudpresser.com/
+- https://github.com/cloudpresser
