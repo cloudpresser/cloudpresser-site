@@ -1,0 +1,53 @@
+name: Lastmod Manifest
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  update-and-validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out pull request branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate lastmod manifest
+        run: npm run lastmod:generate
+
+      - name: Commit updated manifest to pull request branch
+        if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'github-actions[bot]'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if git diff --quiet -- generated/lastmod.json; then
+            exit 0
+          fi
+
+          git add generated/lastmod.json
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "chore: update lastmod manifest"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
+
+      - name: Validate committed manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run lastmod:generate
+          git diff --exit-code -- generated/lastmod.json
