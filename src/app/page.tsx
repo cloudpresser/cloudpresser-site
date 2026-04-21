@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { getAllPosts } from "@/lib/posts";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { CursorSpotlightCard } from "@/components/ui/cursor-spotlight-card";
 
 const HOME_URL = "https://cloudpresser.com";
 const THESIS_URL = `${HOME_URL}/control-systems-for-ai`;
@@ -178,25 +179,26 @@ export default function Home() {
   ];
 
   return (
-    <div className="space-y-16 sm:space-y-24">
+    <div className="space-y-16 sm:space-y-24 lg:space-y-32">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Hero */}
-      <section className="pt-12 pb-4 sm:pt-20 sm:pb-8">
+      <section className="pt-12 pb-4 sm:pt-20 sm:pb-8 lg:pt-32">
         {/* Eyebrow */}
         <ScrollReveal delay={0}>
-          <p className="text-sm font-mono text-muted-foreground/70 mb-4 tracking-wide">
+          <p className="text-sm font-mono text-muted-foreground/70 mb-4 tracking-wide lg:mb-6">
             Staff AI Systems Engineer
           </p>
         </ScrollReveal>
 
         {/* Headline */}
         <ScrollReveal delay={100}>
-          <h1 className="font-serif text-[2.5rem] sm:text-[3.5rem] leading-[1.08] font-semibold tracking-tight text-foreground">
+          <h1 className="font-serif text-[2.5rem] sm:text-[3.5rem] lg:text-[4.5rem] xl:text-[5rem] leading-[1.08] font-semibold tracking-tight text-foreground max-w-4xl lg:max-w-none">
             I design and build
-            <br />
+            <br className="lg:hidden" />
+            <span className="hidden lg:inline"> </span>
             <span className="text-primary bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
               production AI systems.
             </span>
@@ -205,9 +207,10 @@ export default function Home() {
 
         {/* Subtext */}
         <ScrollReveal delay={200}>
-          <p className="mt-6 text-lg sm:text-xl leading-relaxed text-muted-foreground max-w-[640px]">
+          <p className="mt-6 text-lg sm:text-xl lg:text-2xl leading-relaxed text-muted-foreground max-w-[640px] lg:max-w-4xl xl:max-w-5xl lg:mt-8">
             End-to-end AI platforms with control loops across every layer.
-            <br className="hidden sm:inline" />
+            <br className="hidden sm:inline lg:hidden" />
+            <span className="hidden lg:inline"> </span>
             Built for reliability, observability, and real-world execution.
           </p>
         </ScrollReveal>
@@ -358,11 +361,12 @@ export default function Home() {
           </div>
         </ScrollReveal>
 
-        <div className="space-y-6">
+        <div className="space-y-6 lg:grid lg:grid-cols-2 lg:gap-8 lg:space-y-0">
           {featuredSystems.map((s, idx) => (
-            <ScrollReveal key={s.title} delay={idx * 100}>
-              <article className="group relative -mx-4 rounded-2xl p-4 transition-all hover:bg-muted/40 sm:p-6 border border-transparent hover:border-border/50">
-                <div className="space-y-4">
+            <ScrollReveal key={s.title} delay={idx * 100} className="h-full">
+              <CursorSpotlightCard className="h-full rounded-2xl border border-transparent hover:border-border/50 transition-colors">
+                <article className="group relative -mx-4 lg:mx-0 h-full p-4 transition-all hover:bg-muted/40 sm:p-6">
+                  <div className="space-y-4">
                   <div className="space-y-1">
                     <h3 className="font-serif text-xl sm:text-[1.625rem] font-semibold text-foreground leading-snug group-hover:text-primary transition-colors">
                       {s.title}
@@ -396,7 +400,7 @@ export default function Home() {
                     </div>
                   </dl>
 
-                  <div className="flex flex-wrap gap-1.5 pt-2">
+                  <div className="flex flex-wrap gap-1.5 pt-2 mt-auto">
                     {s.tags.map((tag) => (
                       <Badge
                         key={tag}
@@ -408,7 +412,8 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
-              </article>
+                </article>
+              </CursorSpotlightCard>
             </ScrollReveal>
           ))}
         </div>
@@ -498,35 +503,37 @@ export default function Home() {
         </ScrollReveal>
 
         {posts.length > 0 && (
-          <div className="space-y-2">
+          <div className="space-y-2 lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0">
             {posts.map((post, idx) => (
-              <ScrollReveal key={post.slug} delay={idx * 100}>
-                <article className="group -mx-4 rounded-xl p-4 transition-all hover:bg-muted/40 border border-transparent hover:border-border/50">
-                  <Link
-                    href={`/writing/${post.slug}`}
-                    className="block space-y-1.5"
-                  >
-                    <div className="flex items-baseline gap-3 flex-wrap">
-                      <p className="text-sm text-muted-foreground">
-                        {formatDate(post.date)}
-                      </p>
-                      {post.series && (
-                        <p className="text-xs text-muted-foreground/60 font-mono">
-                          {post.series}
-                          {post.seriesPart ? ` #${post.seriesPart}` : ""}
+              <ScrollReveal key={post.slug} delay={idx * 100} className="h-full">
+                <CursorSpotlightCard className="h-full rounded-xl border border-transparent hover:border-border/50 transition-colors">
+                  <article className="group -mx-4 lg:mx-0 h-full p-4 transition-all hover:bg-muted/40">
+                    <Link
+                      href={`/writing/${post.slug}`}
+                      className="flex flex-col h-full space-y-2.5"
+                    >
+                      <div className="flex items-baseline gap-3 flex-wrap">
+                        <p className="text-sm text-muted-foreground">
+                          {formatDate(post.date)}
+                        </p>
+                        {post.series && (
+                          <p className="text-xs text-muted-foreground/60 font-mono">
+                            {post.series}
+                            {post.seriesPart ? ` #${post.seriesPart}` : ""}
+                          </p>
+                        )}
+                      </div>
+                      <h3 className="font-serif text-lg sm:text-xl font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
+                        {post.title}
+                      </h3>
+                      {post.description && (
+                        <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+                          {post.description}
                         </p>
                       )}
-                    </div>
-                    <h3 className="font-serif text-lg sm:text-xl font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
-                      {post.title}
-                    </h3>
-                    {post.description && (
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {post.description}
-                      </p>
-                    )}
-                  </Link>
-                </article>
+                    </Link>
+                  </article>
+                </CursorSpotlightCard>
               </ScrollReveal>
             ))}
           </div>

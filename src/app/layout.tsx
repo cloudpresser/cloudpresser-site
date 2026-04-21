@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { HeaderCanvas } from "@/components/header-canvas";
+import { LayoutWrapper } from "@/components/layout-wrapper";
 import "./globals.css";
 
 const inter = Inter({
@@ -68,9 +69,7 @@ export default function RootLayout({
           <HeaderCanvas />
           <div className="min-h-screen flex flex-col relative z-0">
             <Nav />
-            <main className="flex-1 w-full max-w-[840px] mx-auto px-6 sm:px-10 pt-6 pb-12">
-              {children}
-            </main>
+            <LayoutWrapper>{children}</LayoutWrapper>
             <Footer />
           </div>
         </ThemeProvider>
