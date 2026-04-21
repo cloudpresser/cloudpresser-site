@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { getAllPosts } from "@/lib/posts";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { CursorSpotlightCard } from "@/components/ui/cursor-spotlight-card";
+import { PipelineSequence } from "@/components/ui/pipeline-sequence";
 
 const HOME_URL = "https://cloudpresser.com";
 const THESIS_URL = `${HOME_URL}/control-systems-for-ai`;
@@ -218,26 +219,7 @@ export default function Home() {
         {/* Pipeline Visual */}
         <ScrollReveal delay={300}>
           <div className="mt-5 space-y-2">
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-muted-foreground">
-              {[
-                "intent",
-                "orchestration",
-                "execution",
-                "verification",
-                "supervision",
-              ].map((step, i) => (
-                <span key={step} className="flex items-center gap-3">
-                  <span className="bg-secondary text-secondary-foreground px-3 py-1.5 rounded-md text-sm tracking-tight transition-all duration-300 hover:bg-secondary/80 hover:-translate-y-0.5 hover:shadow-sm cursor-default">
-                    {step}
-                  </span>
-                  {i < 4 && (
-                    <span className="text-border text-xs select-none">
-                      &rarr;
-                    </span>
-                  )}
-                </span>
-              ))}
-            </div>
+            <PipelineSequence />
             <Link
               href="/control-systems-for-ai"
               className="inline-block text-xs text-muted-foreground/60 hover:text-primary transition-colors underline underline-offset-4 decoration-border/60 hover:decoration-primary"
