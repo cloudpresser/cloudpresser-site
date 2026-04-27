@@ -7,7 +7,7 @@ series: "Control Systems for Intelligent Software"
 seriesPart: 5
 ---
 
-If execution is solved, verification is bounded, agents are control systems, and observability makes them visible — then one question remains: how does a human actually operate this thing?
+If [execution is solved](/writing/bash-is-all-you-need), [verification is bounded](/writing/smart-model-reviewer-is-backwards), agents are [control systems](/writing/ai-agents-are-control-systems), and [observability makes them visible](/writing/observability-for-ai-agents) — then one question remains: how does a human actually operate this thing?
 
 Once you can see what the system is doing, the next problem is interacting with it.
 
@@ -29,11 +29,11 @@ Médéric Hurier put it sharply earlier this year: "We are stapling rocket engin
 
 This mismatch has real consequences. When the interface can't represent system state, the human can't supervise effectively. And unsupervised agents are unreliable agents.
 
-A system judged safe once is not therefore reliable in production. A control surface is what lets humans operate reliability over time, not just inspect a single run.
+Passing evals once is not the same thing as being reliable in production. A control surface is what lets humans supervise reliability over time by exposing the signals that matter across many runs, not just inspect a single one.
 
 ## What Control Surfaces Actually Look Like
 
-A control surface is a purpose-built interface for system supervision. Not a chat wrapper. Not a dashboard bolted onto a chat app. A dedicated layer designed to answer the question: *what is happening right now, and what do I need to decide?*
+A control surface is a purpose-built supervision layer. Not a chat wrapper. Not a dashboard bolted onto a chat app. Its job is to take the raw output of an agent system — execution state, checks, failures, drift, and pending decisions — and render it in a form a human can act on quickly.
 
 The components are predictable because the requirements are universal:
 
@@ -47,9 +47,9 @@ control surface
 └── notifications  — push alerts on completion, failure, or human-needed
 ```
 
-Jeremy Knox hit this wall in February when he realized he had 49 AI services running and no way to understand their collective state. His solution was Mission Control — a 14-panel dashboard where, in his words, the goal was "zero-effort situational awareness." Not more visibility. Not more logs. The system explaining itself to the operator in under 30 seconds.
+Jeremy Knox hit this wall in February when he realized he had 49 AI services running and no way to understand their collective state. His solution was Mission Control — a 14-panel dashboard where, in his words, the goal was "zero-effort situational awareness." Not more visibility. Not more logs. The right signals, rendered clearly enough that the system could explain itself to the operator in under 30 seconds.
 
-That's the right framing. A control surface doesn't give you more information. It makes system behavior legible enough to supervise and compare across runs.
+That's the right framing. The point of a control surface is not more visibility for its own sake. It is to expose the operational signals that matter in a form a human can supervise across many runs.
 
 ## A Control Surface, Not a Chat Wrapper
 
@@ -72,19 +72,13 @@ control-surface demo
 
 Today it shows a single supervised run. The real production question is what this looks like across many runs over time. A single successful run does not make an agent trustworthy. Longitudinal observation does.
 
-## Why Mobile Still Matters
+## A Practical Extension
 
-Here's the thing about AI agents: they run long tasks. A complex refactor takes twenty minutes. A multi-file migration takes an hour. A full test suite with retries can run while you're at lunch.
+Long-running agents create a simple bottleneck: the human supervisor is often away from the desk before the work is done.
 
-Humans are not always at their desk. Mobile control surfaces reduce the supervision loop.
+That makes portability useful, not because "AI should be on your phone," but because supervision should not stop when the operator steps away. A mobile control surface can surface the same signals that matter on desktop — completion, failure, drift, approval-needed — and shorten the gap between execution and intervention.
 
-Push notifications when an agent completes a task or hits a failure. Quick approval from your phone when an agent needs a human decision. Monitoring execution state while you're in a meeting, on a walk, or away from your desk. Jonathan Tsai's OpenClaw framing is still right: bring the work to where humans are.
-
-This isn't about convenience. It's about reducing the gap between execution and intervention. A desktop-only control surface means the system waits for the operator to come back. A mobile surface means the system can be supervised continuously enough to stay reliable.
-
-The React Native OpenCode client still fits this pattern. It matters less as a mobile app than as another example of the interface shape: stream execution, inspect changes spatially, and respond when the agent needs a human.
-
-The important distinction is architectural: not "chat, but on your phone". A control surface that keeps a running system legible and correctable.
+This is how I think about the [React Native OpenCode client](https://github.com/cloudpresser/react-native-opencode-client). Not as chat on a smaller screen, but as a portable supervision client for long-running agent workflows. This is one practical implication of the architecture: the control surface can follow the operator instead of pinning the operator to the desk.
 
 ## The Industry Is Figuring This Out
 
@@ -115,10 +109,10 @@ intent → system → visibility → control → decision
 
 Everything before this post builds the system. Execution, verification, control system architecture, observability — those are the layers that make AI agents capable, correct, and visible. This post is about the layer that lets a human actually operate it.
 
-The compressible parts of work can be systematized. What remains — judgment, intent, taste — is irreducible. Not because the models aren't good enough yet, but because some parts of a system's behavior can only be understood from outside it.
+In industry terms, the stack is straightforward: orchestration coordinates execution, evals and verification constrain correctness, observability exposes behavior, and control surfaces turn those signals into something a human can supervise in production.
 
-Execution, verification, observability, and control surfaces — this is the architecture. The hard part was never intelligence. It was building systems that can be understood, supervised, and trusted over repeated runs.
+The compressible parts of work can be systematized. What remains — judgment, intent, taste — is irreducible. Not because the models aren't good enough yet, but because some parts of a system's behavior can only be understood from outside it. That boundary does not disappear just because capability improves.
 
 Safety in staging is a checkpoint. Reliability in production is a continuous control problem.
 
-This is what turns AI from a demo into something you can actually rely on. Without it, you don't have a system. You have a demo with good marketing.
+This is what turns AI from a demo into something you can actually rely on. Without it, you don't have a production system. You have a demo with good marketing.
