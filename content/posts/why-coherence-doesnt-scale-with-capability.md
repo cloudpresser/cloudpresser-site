@@ -126,6 +126,8 @@ This is exactly what shows up in practice:
 
 Not as temporary scaffolding — but as required structure.
 
+That is not just a philosophical claim to me anymore. In [`control-surface-agent`](https://github.com/cloudpresser/control-surface-agent), the system is designed from the start around that outside layer: runs persist explicit state, reconciliation checks whether the artifact still matches the available evidence, operator feedback can redirect the workflow, and remediation is treated as part of the architecture rather than as an embarrassing exception. Even in a small prototype, the supervision layer appears immediately.
+
 ---
 
 ## What Actually Gets Automated
@@ -190,6 +192,8 @@ The supervision layer isn't a temporary workaround.
 
 It's part of the design.
 
+This is also why I think the industry's default story is too simple. If stronger models automatically produced stronger coherence, you would expect these supervision layers to shrink as capability rises. In practice, the opposite keeps happening: as systems get more useful, teams add more instrumentation, more verification structure, more operator surfaces, and more explicit remediation paths. Capability is going up. The need for external coherence mechanisms is going up with it.
+
 ---
 
 ## Where This Leaves Us
@@ -204,6 +208,8 @@ That means:
 - instrumenting systems so behavior is visible
 - creating interfaces that allow intervention
 - accepting that correctness is not fully internal
+
+In other words: build systems that assume a boundary instead of promising to transcend one. That is the through-line across this series, and it is the reason the control-surface pattern matters more to me than another jump in benchmark scores.
 
 The hard part was never intelligence.
 
